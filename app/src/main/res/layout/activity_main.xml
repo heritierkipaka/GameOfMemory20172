@@ -1,17 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="fr.kipaka.com.gameofmemory2017.MainActivity">
+    tools:context=".MainActivity">
 
+
+    <include android:id="@+id/inc_tb_bottom"
+        layout="@layout/toolbar_bottom"/>
+    <!-- toolbar du bas de la page -->
+
+    <!-- Button A propos -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
+    <!-- creation d'une ligne vertical au milieu -->
+        <Button
+            android:id="@+id/ApprosMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A propos"
+            android:layout_gravity="center_horizontal"
+            android:onClick="showApprosMenu"
+            tools:ignore="HardcodedText"
+            android:textSize="18sp"
+            android:textColor="@android:color/background_light" />
+    </LinearLayout>
+
+
+
+    <!-- Toolbar du Haut -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_main"
+        android:elevation="4dp"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        tools:ignore="RtlHardcoded,UnusedAttribute" />
+
+    <!-- Button HIGH SCORES -->
+    <Button
+        android:id="@+id/HighScores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="showHighScoresToolbar"
+        android:text="HIGH SCORES"
+        tools:ignore="HardcodedText"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
+
+    <!-- Button MEMORY GAME -->
+    <Button
+        android:id="@+id/GameToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="showGameToolbar"
+        android:text="MEMORY GAME"
+        tools:ignore="HardcodedText"
+        android:layout_above="@+id/HighScores"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
+
+    <!-- GoM -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="GoM"
+        android:textColor="@color/colorPrimary"
+        tools:ignore="HardcodedText,UnusedAttribute"
+        android:id="@+id/textView"
+        android:textSize="30sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:fontFamily="casual"
+        android:layout_above="@+id/inc_tb_bottom"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp" />
+
+    <!-- IMAGE DU JEU -->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/card23"
+        android:id="@+id/imageView2"
+        android:layout_above="@+id/inc_tb_bottom"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="66dp"
+        android:contentDescription=""
+        tools:ignore="ContentDescription" />
+
 </RelativeLayout>
