@@ -108,10 +108,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
         if (time + 2000 > System.currentTimeMillis()) {
             super.onBackPressed();
         } else {
-            Toast.makeText(MainActivity.this, "Appuyez longtemps pour quitter Game Of Memory", Toast.LENGTH_SHORT);
+            Toast.makeText(MainActivity.this, "Appuyez longtemps pour quitter Game Of Memory", Toast.LENGTH_SHORT).show();
         }
         time = System.currentTimeMillis();
     }

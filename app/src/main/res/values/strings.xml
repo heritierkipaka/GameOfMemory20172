@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Game Of Memory 2K17</string>
 
-    <string name="action_save">Save</string>
+    <string name="action_save">Saves</string>
     <string name="mail">Email</string>
     <string name="settings">Settings</string>
     <string name="camera">Camera</string>

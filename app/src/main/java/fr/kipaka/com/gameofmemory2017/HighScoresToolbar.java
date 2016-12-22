@@ -19,7 +19,7 @@ public class HighScoresToolbar extends AppCompatActivity {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
-        getSupportActionBar().setTitle("High Scores  !");
+        getSupportActionBar().setTitle("High Scores!");
         mToolbar.setSubtitle("by Game Of Memory !");
     }
 
@@ -37,7 +37,7 @@ public class HighScoresToolbar extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.save:
-                msg = getString(R.string.action_save);
+                msg = getString(R.string.mail);
                 break;
 
             case R.id.mail:

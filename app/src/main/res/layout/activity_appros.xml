@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_appros"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ApprosMenu">
+
+
+    <include android:id="@+id/inc_tb_bottom"
+        layout="@layout/toolbar_bottom"/>
+    <!-- toolbar du bas de la page -->
+
+    <!-- Button A propos -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout"
+        tools:ignore="ObsoleteLayoutParam">
+        <!-- creation d'une ligne vertical au milieu -->
+
+        <!-- GoM -->
+        <!-- GoM -->
+
+        <!-- GoM -->
+    </LinearLayout>
+
+
+
+    <!-- Toolbar du Haut -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_main"
+        android:elevation="4dp"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        tools:ignore="ObsoleteLayoutParam,RtlHardcoded" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contributeur du Projet Android"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/titre_about"
+        android:textSize="30sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center"
+        android:fontFamily="casual"
+        tools:ignore="HardcodedText,ObsoleteLayoutParam"
+        android:layout_below="@+id/tb_main"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="42dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="- KIPAKA M. Héritier"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/name2"
+        android:textSize="25sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="textStart"
+        android:fontFamily="cursive"
+        tools:ignore="DuplicateIds,HardcodedText,ObsoleteLayoutParam"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="- TALEB Nassim"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/Name1"
+        android:textSize="25sp"
+        android:textStyle="normal|bold"
+        android:fontFamily="cursive"
+        android:textAlignment="center"
+        tools:ignore="DuplicateIds,HardcodedText,ObsoleteLayoutParam"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
