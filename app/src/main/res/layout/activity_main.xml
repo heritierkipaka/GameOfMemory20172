@@ -5,12 +5,14 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+  tools:context=".MainActivity">
+    <!--android:background="@color/grey"-->
 
 
-    <include android:id="@+id/inc_tb_bottom"
-        layout="@layout/toolbar_bottom"/>
-    <!-- toolbar du bas de la page -->
+
+  <include android:id="@+id/inc_tb_bottom"
+      layout="@layout/toolbar_bottom"/>
+  <!-- toolbar du bas de la page -->
 
     <!-- Button A propos -->
     <LinearLayout
@@ -102,5 +104,7 @@
         android:layout_marginEnd="66dp"
         android:contentDescription=""
         tools:ignore="ContentDescription" />
+
+
 
 </RelativeLayout>

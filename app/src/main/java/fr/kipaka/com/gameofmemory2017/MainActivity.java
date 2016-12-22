@@ -1,9 +1,9 @@
 package fr.kipaka.com.gameofmemory2017;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,9 +13,10 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
 
-   // private static String TAG = "LOG";
+    // private static String TAG = "LOG";
     private Toolbar mToolbar;
     protected Toolbar mToolbarBottom;
+    private static long time;
 
 
     @Override
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         mToolbar.setSubtitle("Menu Principal");
         mToolbar.setLogo(R.drawable.ic_launcher);
         setSupportActionBar(mToolbar);
+
 
         mToolbarBottom = (Toolbar) findViewById(R.id.inc_tb_bottom);
         mToolbarBottom.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -94,9 +96,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showApprosMenu(View view) {
-     Intent intent = new Intent(this, ApprosMenu.class);
-     startActivity(intent);
-     }
+        Intent intent = new Intent(this, ApprosMenu.class);
+        startActivity(intent);
+    }
 
+    @Override
+    protected void onDestroy() {
 
+        super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (time + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(MainActivity.this, "Appuyez longtemps pour quitter Game Of Memory", Toast.LENGTH_SHORT);
+        }
+        time = System.currentTimeMillis();
+    }
 }
+
+

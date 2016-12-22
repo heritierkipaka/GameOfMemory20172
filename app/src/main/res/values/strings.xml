@@ -25,8 +25,9 @@
     <string name="high_scores">High Scores</string>
     <string name="action_website">http://heritier.kipaka.free.fr</string>
 
-    AboutDev
+
     <string name="AboutDeveloppeur">Image de la barre du bas</string>
+    <string name="action_close">Quittez app</string>
 
 
     <string-array name="type">
