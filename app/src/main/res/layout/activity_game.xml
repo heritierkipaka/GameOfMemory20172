@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:tools="http://schemas.android.com/tools"
+<TableLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/TableLayout03"
     android:background="@color/white"
@@ -13,7 +14,8 @@
         android:layout_width="match_parent"
         android:minHeight="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-         />
+        app:titleTextColor="@android:color/background_light"
+        app:subtitleTextColor="@color/grey" />
 
 
     <TableRow android:id="@+id/TableRow04"
@@ -23,7 +25,11 @@
         <Spinner android:id="@+id/Spinner01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:spinnerMode="dialog"
+            android:minWidth="50dp"
+            android:minHeight="59dp"
+            android:scrollbarSize="20dp">
         </Spinner>
     </TableRow>
 
@@ -48,7 +54,6 @@
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/app_name"
             android:visibility="visible"
             android:textSize="30sp"
             android:paddingTop="20sp"
@@ -74,7 +79,11 @@
             android:layout_width="218dp"
             android:layout_height="97dp"
             android:background="@drawable/bring2"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:contentDescription=""
+            tools:ignore="ContentDescription"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true">
         </ImageView>
     </LinearLayout>
 

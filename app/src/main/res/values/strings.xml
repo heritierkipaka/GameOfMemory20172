@@ -23,7 +23,7 @@
 
 
     <string name="high_scores">High Scores</string>
-    <string name="action_website">(Uri.parse("http://www.heritier.kipaka.free.fr")</string>
+    <string name="action_website">http://heritier.kipaka.free.fr/</string>
 
 
     <string name="AboutDeveloppeur">Image de la barre du bas</string>

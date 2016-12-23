@@ -112,7 +112,7 @@ public class GameToolbar extends AppCompatActivity {
 
 
         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-
+            //Selectionne la taille de la grille
             @Override
             public void onItemSelected(
                     android.widget.AdapterView<?> arg0,
@@ -152,20 +152,21 @@ public class GameToolbar extends AppCompatActivity {
 
         });
     }
-
+    //generer une nouvelle partie de jeu
     private void newGame(int c, int r) {
         ROW_COUNT = r;
         COL_COUNT = c;
 
         cards = new int [COL_COUNT] [ROW_COUNT];
 
-
+        //enleve le menu principal
         mainTable.removeView(findViewById(R.id.TableRow01));
-         mainTable.removeView(findViewById(R.id.ImageView01));
+         mainTable.removeView(findViewById(R.id.linearLayout));
 
         TableRow tr = ((TableRow)findViewById(R.id.TableRow03));
         tr.removeAllViews();
 
+        //REcréer un nouvel affichage
         mainTable = new TableLayout(context);
         tr.addView(mainTable);
 
@@ -175,13 +176,13 @@ public class GameToolbar extends AppCompatActivity {
 
         firstCard=null;
         loadCards();
-
+        //affiche le score
         turns=0;
         ((TextView)findViewById(R.id.tv1)).setText("Tries: "+turns);
 
 
     }
-
+    //chargement des images du Drawable
     private void loadImages() {
         images = new ArrayList<>();
 
@@ -208,7 +209,7 @@ public class GameToolbar extends AppCompatActivity {
         images.add(getResources().getDrawable(R.drawable.card21));
 
     }
-
+    //genre les cartes dans les cases
     private void loadCards(){
         try{
             int size = ROW_COUNT*COL_COUNT;
@@ -221,7 +222,7 @@ public class GameToolbar extends AppCompatActivity {
                 list.add(new Integer(i));
             }
 
-
+            // la fonction aleatoire
             Random r = new Random();
 
             for(int i=size-1;i>=0;i--){
@@ -230,7 +231,7 @@ public class GameToolbar extends AppCompatActivity {
                 if(i>0){
                     t = r.nextInt(i);
                 }
-
+// la division par 2 (sur le dernier size) met les cartes en doubles !! car deux cartes ont le mm nombre dans la matrice
                 t=list.remove(t).intValue();
                 cards[i%COL_COUNT][i/COL_COUNT]=t%(size/2);
 
