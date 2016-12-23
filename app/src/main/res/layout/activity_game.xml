@@ -71,11 +71,10 @@
         android:gravity="center">
 
         <ImageView android:id="@+id/ImageView01"
-            android:layout_width="wrap_content"
-            android:layout_height="179dp"
+            android:layout_width="218dp"
+            android:layout_height="97dp"
             android:background="@drawable/bring2"
-            android:layout_gravity="center"
-            android:contentDescription="Brain_game">
+            android:layout_gravity="center">
         </ImageView>
     </LinearLayout>
 

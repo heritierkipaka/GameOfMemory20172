@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,13 +19,24 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-/*** Created by M0297357 on 22/12/2016.*/
+/*** Created by M0297357 on 22/12/2016.
+ *  créer 1 matrice telle que la ligne = 4, col = 4x4 = 4 aura 16 cellules, chaque cellule sera affecté
+ *  au premier certain nombre DC (attribué = fonction aléatoire dans = 16 / 2, aura ainsi 8 paires)
+ puis attribuer id à la matrice suivie par la formule id = 100 * col + ligne (cet ID nombre fixe pour chaque cellule)
+ tout en cliquant sur chaque cellule d'image (DC chaque cellule sera initialement fixé le même chiffre),
+ il passera l'id pour calculer ensuite quelle rangée et col image
+ rangée et col retiré de la cellule DC avec des nombres aléatoires initiaux,
+ mis en arrière-plan de la cellule selon l'ArrayList ci-dessus.
+ Maintenant, est quand vous avez besoin d'ouvrir 2 case 2 case pour vérifier que
+ chacun aléatoire = k, si = puis il a fallu, et k =,
+ puis le remettre à l'arrière-plan d'origine.*/
 public class GameToolbar extends AppCompatActivity {
 
     private static final String PREF_SAVED_GAME = "saved_game";
@@ -43,6 +55,32 @@ public class GameToolbar extends AppCompatActivity {
     int turns;
     public TableLayout mainTable;
     public UpdateCardsHandler handler;
+
+    //affichage du menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    public boolean onMenuItemClick(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.action_info:
+                Toast.makeText(this,"Cliquez sur spinner et selectionner une taille de grille, puis trouvez les paires !",Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.quittez:
+                finish();
+                return true;
+
+            case R.id.action_website:
+                Toast.makeText(this,"KIPAKA",Toast.LENGTH_SHORT).show();
+        }
+
+        return true;
+    }
+
+//fin pour le menu
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,14 +141,12 @@ public class GameToolbar extends AppCompatActivity {
                         return;
                 }
                 newGame(x,y);
-
             }
 
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
-
             }
 
         });
@@ -207,6 +243,7 @@ public class GameToolbar extends AppCompatActivity {
 
     }
 
+    //crée les boutons sur chaque case du tableau "Table Row"
     private TableRow createRow(int y){
         TableRow row = new TableRow(context);
         row.setHorizontalGravity(Gravity.CENTER);
@@ -216,7 +253,7 @@ public class GameToolbar extends AppCompatActivity {
         }
         return row;
     }
-
+    //Mets un ecran par defaut sur chaque case du tableau (arriere de la carte)
     private View createImageButton(int x, int y){
         Button button = new Button(context);
         button.setBackgroundDrawable(backImage);
@@ -224,14 +261,14 @@ public class GameToolbar extends AppCompatActivity {
         button.setOnClickListener(buttonListener);
         return button;
     }
-
+    //classe qui regarde ou l'utilisateur clique
     class ButtonListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
 
             synchronized (lock) {
-                if(firstCard!=null && seconedCard != null){
+                if(firstCard!=null && seconedCard!=null){
                     return;
                 }
                 int id = v.getId();
@@ -242,6 +279,7 @@ public class GameToolbar extends AppCompatActivity {
 
         }
 
+        //affiche l'image qui est sur la case choisie (en enlevant l'image de fond)
         private void turnCard(Button button,int x, int y) {
             button.setBackgroundDrawable(images.get(cards[x][y]));
 
@@ -251,13 +289,14 @@ public class GameToolbar extends AppCompatActivity {
             else{
 
                 if(firstCard.x == x && firstCard.y == y){
-                    return; //the user pressed the same card
+                    return; //Quand l'user retourne la meme
                 }
 
                 seconedCard = new Cards(button,x,y);
 
+                //incrementation du score
                 turns++;
-                ((TextView)findViewById(R.id.tv1)).setText("Tries: "+turns);
+                ((TextView)findViewById(R.id.tv1)).setText("Essais: "+turns);
 
 
                 TimerTask tt = new TimerTask() {
@@ -292,23 +331,25 @@ public class GameToolbar extends AppCompatActivity {
                 checkCards();
             }
         }
+        //si deux cartes identiques alors les deux deviennent invisible
         public void checkCards(){
             if(cards[seconedCard.x][seconedCard.y] == cards[firstCard.x][firstCard.y]){
                 firstCard.button.setVisibility(View.INVISIBLE);
                 seconedCard.button.setVisibility(View.INVISIBLE);
             }
             else {
+                //sinon on remet l'image de fond
                 seconedCard.button.setBackgroundDrawable(backImage);
                 firstCard.button.setBackgroundDrawable(backImage);
             }
-
+            //on remet à zéro les images
             firstCard=null;
             seconedCard=null;
         }
     }
 
 
-    //** La classe des Cartes **/
+    //** La classe des Cartes X Y **/
     public class Cards {
 
         public int x;
@@ -324,17 +365,15 @@ public class GameToolbar extends AppCompatActivity {
     }
 
 
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
     @Override
     protected void onPause() {
         super.onPause();
+        saveGame();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         saveGame();
     }
 
@@ -345,14 +384,14 @@ public class GameToolbar extends AppCompatActivity {
 
 
     protected void saveGame() {
-        d("Saving game");
+        d("Saving Game");
         getPreferences(MODE_PRIVATE).edit().
                 putString(PREF_SAVED_GAME, null).
                 commit();
     }
 
     protected void d(String message) {
-        Log.d("Memory", message);
+        Log.d("MemoryGame", message);
     }
 
 
