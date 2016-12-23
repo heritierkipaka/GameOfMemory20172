@@ -1,7 +1,5 @@
 package fr.kipaka.com.gameofmemory2017;
-/**
- * Created by M0297357 on 22/12/2016.
- */
+/*** Created by M0297357 on 22/12/2016.*/
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -34,42 +32,6 @@ public class HighScoresToolbar extends  ListActivity {
         return true;
     }
 
-   /** @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        String msg = "";
-
-        switch (item.getItemId()) {
-
-            case R.id.save:
-                msg = getString(R.string.mail);
-                break;
-
-            case R.id.mail:
-                msg = getString(R.string.mail);
-                break;
-
-            case R.id.camera:
-                msg = getString(R.string.camera);
-                break;
-
-            case R.id.settings:
-                msg = getString(R.string.settings);
-                break;
-
-            case R.id.web_search:
-                msg = getString(R.string.web_search);
-                break;
-
-            case R.id.help:
-                msg = getString(R.string.help);
-                break;
-        }
-
-        Toast.makeText(this, msg + " clicked !", Toast.LENGTH_SHORT).show();
-
-        return super.onOptionsItemSelected(item);
-    }**/
 
 
 

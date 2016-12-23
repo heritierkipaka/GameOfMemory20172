@@ -178,7 +178,7 @@ public class GameToolbar extends AppCompatActivity {
         loadCards();
         //affiche le score
         turns=0;
-        ((TextView)findViewById(R.id.tv1)).setText("Tries: "+turns);
+        ((TextView)findViewById(R.id.tv1)).setText("Essais: "+turns);
 
 
     }
@@ -202,11 +202,11 @@ public class GameToolbar extends AppCompatActivity {
         images.add(getResources().getDrawable(R.drawable.card14));
         images.add(getResources().getDrawable(R.drawable.card15));
         images.add(getResources().getDrawable(R.drawable.card16));
-        images.add(getResources().getDrawable(R.drawable.card17));
-        images.add(getResources().getDrawable(R.drawable.card18));
-        images.add(getResources().getDrawable(R.drawable.card19));
-        images.add(getResources().getDrawable(R.drawable.card20));
-        images.add(getResources().getDrawable(R.drawable.card21));
+       // images.add(getResources().getDrawable(R.drawable.card17));
+       // images.add(getResources().getDrawable(R.drawable.card18));
+       // images.add(getResources().getDrawable(R.drawable.card19));
+       // images.add(getResources().getDrawable(R.drawable.card20));
+      //  images.add(getResources().getDrawable(R.drawable.card21));
 
     }
     //genre les cartes dans les cases
@@ -216,7 +216,7 @@ public class GameToolbar extends AppCompatActivity {
 
             Log.i("loadCards()","size=" + size);
 
-            ArrayList<Integer> list = new ArrayList<Integer>();
+            ArrayList<Integer> list = new ArrayList<>();
 
             for(int i=0;i<size;i++){
                 list.add(new Integer(i));
@@ -334,7 +334,7 @@ public class GameToolbar extends AppCompatActivity {
             }
         }
         //si deux cartes identiques alors les deux deviennent invisible
-        public void checkCards(){
+        void checkCards(){
             if(cards[seconedCard.x][seconedCard.y] == cards[firstCard.x][firstCard.y]){
                 firstCard.button.setVisibility(View.INVISIBLE);
                 seconedCard.button.setVisibility(View.INVISIBLE);
@@ -354,11 +354,11 @@ public class GameToolbar extends AppCompatActivity {
     //** La classe des Cartes X Y **/
     public class Cards {
 
-        public int x;
-        public int y;
-        public Button button;
+        int x;
+        int y;
+        Button button;
 
-        public Cards(Button button, int x, int y) {
+        Cards(Button button, int x, int y) {
             this.x = x;
             this.y = y;
             this.button = button;
