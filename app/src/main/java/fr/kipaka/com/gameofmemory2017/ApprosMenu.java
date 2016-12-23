@@ -24,8 +24,8 @@ public class ApprosMenu extends AppCompatActivity {
         setContentView(R.layout.activity_appros);
 
         mToolbar = (Toolbar) findViewById(R.id.tb_main);
-        mToolbar.setTitle("Game Of Memory!");
-        mToolbar.setSubtitle("Menu Principal");
+        mToolbar.setTitle("À propos");
+        mToolbar.setSubtitle("Projet Android");
         mToolbar.setLogo(R.drawable.ic_launcher);
         setSupportActionBar(mToolbar);
 
