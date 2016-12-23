@@ -37,7 +37,7 @@ public class GameToolbar extends AppCompatActivity {
     private Cards firstCard;
     private Cards seconedCard;
     private ButtonListener buttonListener;
-    private Toolbar mToolbar;
+    public Toolbar mToolbar;
     private static Object lock = new Object();
 
     int turns;
@@ -124,7 +124,7 @@ public class GameToolbar extends AppCompatActivity {
 
 
         mainTable.removeView(findViewById(R.id.TableRow01));
-        //  mainTable.removeView(findViewById(R.id.TableRow02));
+         mainTable.removeView(findViewById(R.id.ImageView01));
 
         TableRow tr = ((TableRow)findViewById(R.id.TableRow03));
         tr.removeAllViews();
@@ -146,7 +146,7 @@ public class GameToolbar extends AppCompatActivity {
     }
 
     private void loadImages() {
-        images = new ArrayList<Drawable>();
+        images = new ArrayList<>();
 
         images.add(getResources().getDrawable(R.drawable.card1));
         images.add(getResources().getDrawable(R.drawable.card2));
@@ -305,6 +305,22 @@ public class GameToolbar extends AppCompatActivity {
             firstCard=null;
             seconedCard=null;
         }
+    }
+
+
+    //** La classe des Cartes **/
+    public class Cards {
+
+        public int x;
+        public int y;
+        public Button button;
+
+        public Cards(Button button, int x, int y) {
+            this.x = x;
+            this.y = y;
+            this.button = button;
+        }
+
     }
 
 

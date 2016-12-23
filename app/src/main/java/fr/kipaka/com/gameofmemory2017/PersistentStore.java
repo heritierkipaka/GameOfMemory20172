@@ -11,7 +11,7 @@ import android.content.Context;
 
 public class PersistentStore extends SQLiteOpenHelper {
 
-    static final String[] HIGH_SCORE_FIELDS = new String[] { "ROWID as _id", "levelset", "level + 1 as nice_level", "MIN(moves) as best_score" };
+    static final String[] HIGH_SCORE_FIELDS = new String[] { "ROWID as _id", "MIN(moves) as best_score" };
 
     public PersistentStore(Context context) {
         super(context, "memory.sqlite", null, 1);
@@ -19,8 +19,6 @@ public class PersistentStore extends SQLiteOpenHelper {
 
     public void addScore(String levelset, int level, int moves) {
         ContentValues values = new ContentValues();
-        values.put("levelset", levelset);
-        values.put("level", level);
         values.put("moves", moves);
         getWritableDatabase().insert("scores", null, values);
     }
@@ -31,15 +29,14 @@ public class PersistentStore extends SQLiteOpenHelper {
                 HIGH_SCORE_FIELDS,
                 null,
                 null,
-                "levelset, level", // GROUP BY
+                "moves, moves", // GROUP BY
                 null,
-                "levelset ASC, level ASC", // ORDER BY
                 null
         );
     }
 
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE scores (levelset TEXT, level INT, moves INT, scored_at DATETIME DEFAULT (DATETIME('now')))");
+        db.execSQL("CREATE TABLE scores (moves INT, scored_at DATETIME DEFAULT (DATETIME('now')))");
     }
 
     public void onOpen(SQLiteDatabase db) {
