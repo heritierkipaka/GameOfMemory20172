@@ -331,7 +331,7 @@ public class GameToolbar extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-/**
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -354,6 +354,6 @@ public class GameToolbar extends AppCompatActivity {
     protected void d(String message) {
         Log.d("Memory", message);
     }
-    **/
+
 
 }
