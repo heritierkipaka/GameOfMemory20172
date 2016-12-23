@@ -1,6 +1,6 @@
 package fr.kipaka.com.gameofmemory2017;
 
-/**
+/***
  * Created by M0297357 on 23/12/2016.
  */
 import android.database.sqlite.SQLiteOpenHelper;

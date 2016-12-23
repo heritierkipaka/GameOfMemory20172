@@ -1,5 +1,4 @@
 package fr.kipaka.com.gameofmemory2017;
-
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -186,6 +185,7 @@ public class GameToolbar extends AppCompatActivity {
     private void loadImages() {
         images = new ArrayList<>();
 
+
         images.add(getResources().getDrawable(R.drawable.card1));
         images.add(getResources().getDrawable(R.drawable.card2));
         images.add(getResources().getDrawable(R.drawable.card3));
@@ -209,6 +209,8 @@ public class GameToolbar extends AppCompatActivity {
       //  images.add(getResources().getDrawable(R.drawable.card21));
 
     }
+
+
     //genre les cartes dans les cases
     private void loadCards(){
         try{
