@@ -81,6 +81,22 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.action_info:
+                Toast.makeText(this,"Cliquez sur spinner et selectionner une taille de grille, puis trouvez les paires !",Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.retour:
+                finish();
+                return true;
+
+            case R.id.action_website:
+                Toast.makeText(this,"KIPAKA Héritier",Toast.LENGTH_SHORT).show();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
 
     public void showGameToolbar(View view) {

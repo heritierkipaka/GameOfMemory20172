@@ -2,6 +2,7 @@
 <resources>
 
 
+    <color name="white">#fafafa</color>
 
     <color name="overflowMenuBg">#ede2b2</color>
     <color name="grey_800">#838493</color>
