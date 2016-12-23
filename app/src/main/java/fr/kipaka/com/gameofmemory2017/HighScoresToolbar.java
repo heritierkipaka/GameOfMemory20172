@@ -2,25 +2,31 @@ package fr.kipaka.com.gameofmemory2017;
 /**
  * Created by M0297357 on 22/12/2016.
  */
+import android.app.ListActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.SimpleCursorAdapter;
 
-public class HighScoresToolbar extends AppCompatActivity {
+public class HighScoresToolbar extends  ListActivity {
+
+    private PersistentStore store;
+    private SimpleCursorAdapter adapter;
+    private static final String[] SCORE_FIELDS = new String[] { "levelset", "nice_level", "best_score" };
+    private static final int[] SCORE_VIEWS = new int[] { R.id.score_levelset, R.id.score_level, R.id.high_score_moves };
+    private Toolbar mToolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toolbar);
 
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        store = new PersistentStore(this);
+        adapter = new SimpleCursorAdapter(this, R.layout.score_item, store.getScores(), SCORE_FIELDS, SCORE_VIEWS);
+        getListView().addHeaderView(getLayoutInflater().inflate(R.layout.score_header, null));
+        setListAdapter(adapter);
 
-        getSupportActionBar().setTitle("High Scores!");
-        mToolbar.setSubtitle("by Game Of Memory !");
     }
 
 
@@ -29,7 +35,8 @@ public class HighScoresToolbar extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-    @Override
+
+   /** @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         String msg = "";
@@ -64,6 +71,8 @@ public class HighScoresToolbar extends AppCompatActivity {
         Toast.makeText(this, msg + " clicked !", Toast.LENGTH_SHORT).show();
 
         return super.onOptionsItemSelected(item);
-    }
+    }**/
+
+
 
 }

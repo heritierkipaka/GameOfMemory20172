@@ -7,9 +7,9 @@ import android.widget.Button;
 public class Cards {
 
 
-    private int x;
-    private int y;
-    private Button button;
+    public int x;
+    public int y;
+    public Button button;
 
     public Cards(Button button, int x,int y) {
         this.x = x;
