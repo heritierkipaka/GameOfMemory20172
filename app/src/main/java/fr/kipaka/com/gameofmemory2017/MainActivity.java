@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
 
 
     public void showGameToolbar(View view) {
