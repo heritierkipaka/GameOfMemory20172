@@ -21,7 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class DisplayScores extends Activity {
-    int from_Where_I_Am_Coming = 0;
     TextView turns;
     TextView name;
     int id_To_Update = 0;
@@ -47,9 +46,9 @@ public class DisplayScores extends Activity {
                 id_To_Update = Value;
                 rs.moveToFirst();
 
-                String nam = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_NAME));
-                String phon = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_TURNS));
-
+                String nam = rs.getString(rs.getColumnIndex(DBHelper.COMPTEUR_COLUMN_NAME));
+                String phon = rs.getString(rs.getColumnIndex(DBHelper.COMPTEUR_COLUMN_TURNS));
+                String id = rs.getString(rs.getColumnIndex(DBHelper.COMPTEUR_COLUMN_ID));
 
                 if (!rs.isClosed()) {
                     rs.close();
