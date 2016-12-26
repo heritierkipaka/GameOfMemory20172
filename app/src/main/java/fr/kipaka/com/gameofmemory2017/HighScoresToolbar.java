@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,17 +12,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
+
 
 
 public class HighScoresToolbar extends AppCompatActivity {
 
-    public final static String EXTRA_MESSAGE = "MESSAGE";
     DBHelper mydb;
     Toolbar mToolbar;
     Toolbar mToolbarBottom;
-    private ListView obj;
 
     //affichage du menu
     @Override
@@ -42,7 +39,6 @@ public class HighScoresToolbar extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), DisplayScores.class);
                 intent.putExtras(dataBundle);
-
                 startActivity(intent);
                 return true;
 
@@ -61,7 +57,7 @@ public class HighScoresToolbar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscores);
-        mToolbar = (Toolbar) findViewById(R.id.tb_DataBase);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle("High Scores");
         mToolbar.setSubtitle("Best Gamers");
         mToolbar.setLogo(R.drawable.ic_launcher);
@@ -108,7 +104,7 @@ public class HighScoresToolbar extends AppCompatActivity {
         ArrayList<String> array_list = mydb.getAllScores();
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, array_list);
 
-        obj = (ListView) findViewById(R.id.listView1);
+        ListView obj = (ListView) findViewById(R.id.listView1);
         obj.setAdapter(arrayAdapter);
         obj.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -129,13 +125,6 @@ public class HighScoresToolbar extends AppCompatActivity {
 
     }
 
-
-    public boolean onKeyDown(int keycode, KeyEvent event) {
-        if (keycode == KeyEvent.KEYCODE_BACK) {
-            moveTaskToBack(true);
-        }
-        return super.onKeyDown(keycode, event);
-    }
 
 }
 

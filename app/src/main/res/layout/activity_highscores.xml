@@ -14,19 +14,9 @@
     <!-- toolbar du bas de la page -->
 
     <!-- Toolbar du Haut -->
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tb_DataBase"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:minHeight="?attr/actionBarSize"
-        app:subtitleTextColor="@color/grey"
-        app:titleTextColor="@android:color/background_light"
-        tools:ignore="ObsoleteLayoutParam,RtlHardcoded" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
     <!-- Toolbar du Haut -->
 
     <TextView
@@ -67,9 +57,8 @@
         android:id="@+id/GameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tb_DataBase"
+        android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
         android:text="Data Base"
         android:textColor="?attr/editTextColor"
         android:textSize="30dp"

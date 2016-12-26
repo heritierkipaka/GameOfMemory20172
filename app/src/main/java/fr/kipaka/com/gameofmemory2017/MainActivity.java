@@ -14,8 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static long time;
+    private static String TAG = "LOG";
     protected Toolbar mToolbarBottom;
-    // private static String TAG = "LOG";
     private Toolbar mToolbar;
 
     @Override

@@ -43,13 +43,12 @@
     <string name="action_second_activity">SecondActivity</string>
 
 
-    <string name="Add_New">Add New Scores</string>
+    <string name="Add_New">ajouter un New Scores</string>
     <string name="edit">Edit Scores</string>
     <string name="delete">Delete Scores</string>
     <string name="title_activity_display_contact">DisplayContact</string>
     <string name="turns"> Nombre de tours</string>
     <string name="id_gamers"> Joueurs </string>
-    <string name="dateturns">Date de creation </string>
     <string name="save">Save Contact</string>
     <string name="deleteContact">Are you sure, you want to delete it.</string>
     <string name="yes">Yes</string>
