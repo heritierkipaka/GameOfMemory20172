@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Activity_highscores"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HighScoresToolbar">
+
+    <!-- toolbar du bas de la page -->
+    <include
+        android:id="@+id/inc_tb_bottom"
+        layout="@layout/toolbar_bottom" />
+    <!-- toolbar du bas de la page -->
+
+    <!-- Toolbar du Haut -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_DataBase"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        app:subtitleTextColor="@color/grey"
+        app:titleTextColor="@android:color/background_light"
+        tools:ignore="ObsoleteLayoutParam,RtlHardcoded" />
+    <!-- Toolbar du Haut -->
+
+    <TextView
+        android:id="@+id/ScoreTitleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/GameView"
+        android:layout_centerHorizontal="true"
+        android:text="Game of Memory"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="35dp"
+        tools:ignore="HardcodedText,SpUsage" />
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        tools:ignore="RtlHardcoded">
+
+    </ScrollView>
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ScoreTitleView"
+        android:layout_marginTop="58dp"></ListView>
+
+    <TextView
+        android:id="@+id/GameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tb_DataBase"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="Data Base"
+        android:textColor="?attr/editTextColor"
+        android:textSize="30dp"
+        tools:ignore="HardcodedText,SpUsage" />
+
+</RelativeLayout>

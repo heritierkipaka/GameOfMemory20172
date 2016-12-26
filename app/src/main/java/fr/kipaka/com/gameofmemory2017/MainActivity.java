@@ -13,11 +13,10 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
 
+    private static long time;
+    protected Toolbar mToolbarBottom;
     // private static String TAG = "LOG";
     private Toolbar mToolbar;
-    protected Toolbar mToolbarBottom;
-    private static long time;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.action_info:
-                Toast.makeText(this,"Cliquez sur spinner et selectionner une taille de grille, puis trouvez les paires !",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Commencer le jeu en cliquant sur (Memory Game)", Toast.LENGTH_SHORT).show();
                 return true;
 
             case R.id.retour:

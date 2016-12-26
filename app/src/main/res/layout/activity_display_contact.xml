@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".DisplayScores">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="370dp">
+
+
+        <!-- Toolbar du Haut -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tb_DataBase"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:minHeight="?attr/actionBarSize"
+            tools:ignore="ObsoleteLayoutParam,RtlHardcoded" />
+        <!-- Toolbar du Haut -->
+
+
+        <TextView
+            android:id="@+id/NomView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/editTextName"
+            android:layout_alignParentLeft="true"
+            android:text="@string/id_gamers"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextTurns"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="128dp"
+            android:onClick="run"
+            android:text="@string/save"
+            tools:ignore="RtlHardcoded" />
+
+
+        <TextView
+            android:id="@+id/ScoreView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/editTextTurns"
+            android:layout_alignLeft="@+id/NomView"
+            android:text="@string/turns"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:ignore="RtlHardcoded" />
+
+
+        <EditText
+            android:id="@+id/editTextTurns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextName"
+            android:layout_below="@+id/editTextName"
+            android:ems="10"
+            android:inputType="phone|text"
+            tools:ignore="LabelFor,RtlHardcoded" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tb_DataBase"
+            android:layout_marginLeft="82dp"
+            android:layout_marginTop="38dp"
+            android:layout_toEndOf="@+id/ScoreView"
+            android:ems="10"
+            android:inputType="text"
+            tools:ignore="LabelFor,RtlHardcoded" />
+
+    </RelativeLayout>
+</ScrollView>

@@ -41,6 +41,11 @@ public class GameToolbar extends AppCompatActivity {
     private static final String PREF_SAVED_GAME = "saved_game";
     private static int ROW_COUNT = -1;
     private static int COL_COUNT = -1;
+    private static Object lock = new Object();
+    public Toolbar mToolbar;
+    public TableLayout mainTable;
+    public UpdateCardsHandler handler;
+    int turns;
     private Context context;
     private Drawable backImage;
     private int [] [] cards;
@@ -48,12 +53,6 @@ public class GameToolbar extends AppCompatActivity {
     private Cards firstCard;
     private Cards seconedCard;
     private ButtonListener buttonListener;
-    public Toolbar mToolbar;
-    private static Object lock = new Object();
-
-    int turns;
-    public TableLayout mainTable;
-    public UpdateCardsHandler handler;
 
     //affichage du menu
     @Override
@@ -79,8 +78,8 @@ public class GameToolbar extends AppCompatActivity {
         }
 
     }
+    //fin pour le menu
 
-//fin pour le menu
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +173,7 @@ public class GameToolbar extends AppCompatActivity {
         }
 
         firstCard=null;
+        // chargement des cartes
         loadCards();
         //affiche le score
         turns=0;
@@ -265,6 +265,34 @@ public class GameToolbar extends AppCompatActivity {
         button.setOnClickListener(buttonListener);
         return button;
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveGame();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        saveGame();
+    }
+
+    public String getSavedGame() {
+        return getPreferences(MODE_PRIVATE).getString(PREF_SAVED_GAME, null);
+    }
+
+    protected void saveGame() {
+        d("Saving Game");
+        getPreferences(MODE_PRIVATE).edit().
+                putString(PREF_SAVED_GAME, null).
+                commit();
+    }
+
+    protected void d(String message) {
+        Log.d("MemoryGame", message);
+    }
+
     //classe qui regarde ou l'utilisateur clique
     class ButtonListener implements View.OnClickListener {
 
@@ -352,7 +380,6 @@ public class GameToolbar extends AppCompatActivity {
         }
     }
 
-
     //** La classe des Cartes X Y **/
     public class Cards {
 
@@ -366,36 +393,6 @@ public class GameToolbar extends AppCompatActivity {
             this.button = button;
         }
 
-    }
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        saveGame();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        saveGame();
-    }
-
-    public String getSavedGame() {
-        return getPreferences(MODE_PRIVATE).getString(PREF_SAVED_GAME, null);
-    }
-
-
-
-    protected void saveGame() {
-        d("Saving Game");
-        getPreferences(MODE_PRIVATE).edit().
-                putString(PREF_SAVED_GAME, null).
-                commit();
-    }
-
-    protected void d(String message) {
-        Log.d("MemoryGame", message);
     }
 
 

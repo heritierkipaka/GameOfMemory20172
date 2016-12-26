@@ -23,6 +23,10 @@
 
         <activity android:name=".ApprosMenu" android:label="ApprosMenu"/>
 
+        <activity
+            android:name=".DisplayScores"
+            android:label="DisplayScores" />
+
     </application>
 
 </manifest>
