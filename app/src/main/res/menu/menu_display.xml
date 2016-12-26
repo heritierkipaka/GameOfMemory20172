@@ -15,7 +15,7 @@
         android:icon="@drawable/ic_arrow_back_white"
         android:orderInCategory="100"
         android:title="@string/action_retour"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
 
 </menu>

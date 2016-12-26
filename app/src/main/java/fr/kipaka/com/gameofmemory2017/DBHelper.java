@@ -84,7 +84,7 @@ class DBHelper extends SQLiteOpenHelper {
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from gamers DESC", null);
+        Cursor res = db.rawQuery("select * from gamers ORDER BY turns DESC", null);
         res.moveToFirst();
 
         while (!res.isAfterLast()) {
