@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static long time;
-    private static String TAG = "LOG";
     protected Toolbar mToolbarBottom;
     private Toolbar mToolbar;
 
@@ -53,10 +52,6 @@ public class MainActivity extends AppCompatActivity {
                         it = new Intent(Intent.ACTION_VIEW);
                         it.setData(Uri.parse("http://www.linkedin.com"));
                         break;
-                   /* case R.id.action_whatsapp:
-                        it = new Intent(Intent.ACTION_VIEW);
-                        it.setData(Uri.parse("http://www.whatsapp.com"));
-                        break;*/
                 }
 
                 startActivity(it);

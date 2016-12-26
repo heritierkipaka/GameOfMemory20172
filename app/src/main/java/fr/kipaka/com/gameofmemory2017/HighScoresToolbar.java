@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
 
+import static fr.kipaka.com.gameofmemory2017.R.id.retour;
 
 
 public class HighScoresToolbar extends AppCompatActivity {
@@ -30,7 +31,6 @@ public class HighScoresToolbar extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
 
         switch (item.getItemId()) {
             case R.id.item100:
@@ -42,11 +42,9 @@ public class HighScoresToolbar extends AppCompatActivity {
                 startActivity(intent);
                 return true;
 
-            case R.id.retour:
+            case retour:
                 finish();
                 return true;
-
-
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -58,6 +56,7 @@ public class HighScoresToolbar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscores);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
         mToolbar.setTitle("High Scores");
         mToolbar.setSubtitle("Best Gamers");
         mToolbar.setLogo(R.drawable.ic_launcher);

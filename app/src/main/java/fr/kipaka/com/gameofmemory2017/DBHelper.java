@@ -16,12 +16,13 @@ import java.util.HashMap;
 
 class DBHelper extends SQLiteOpenHelper {
 
-    public static final String CONTACTS_COLUMN_ID = "id";
-    static final String CONTACTS_COLUMN_NAME = "name";
-    static final String CONTACTS_COLUMN_TURNS = "turns";
-    private static final String DATABASE_NAME = "MyDBName.db";
-    private static final String CONTACTS_TABLE_NAME = "contacts";
+    public static final String COMPTEUR_COLUMN_ID = "id";
+    static final String COMPTEUR_COLUMN_NAME = "name";
+    static final String COMPTEUR_COLUMN_TURNS = "turns";
+    private static final String DATABASE_NAME = "Compteur.db";
+    private static final String COMPTEUR_TABLE_NAME = "gamers";
     private HashMap hp;
+
 
     DBHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -31,7 +32,7 @@ class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table contacts " +
+                "create table gamers " +
                         "(id integer primary key, name text,turns text)"
         );
     }
@@ -39,7 +40,7 @@ class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO Auto-generated method stub
-        db.execSQL("DROP TABLE IF EXISTS contacts");
+        db.execSQL("DROP TABLE IF EXISTS gamers");
         onCreate(db);
     }
 
@@ -48,18 +49,18 @@ class DBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
         contentValues.put("turns", turns);
-        db.insert("contacts", null, contentValues);
+        db.insert("gamers", null, contentValues);
         return true;
     }
 
     Cursor getData(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("select * from contacts where id=" + id + "", null);
+        return db.rawQuery("select * from gamers where id=" + id + "", null);
     }
 
     public int numberOfRows() {
         SQLiteDatabase db = this.getReadableDatabase();
-        return (int) DatabaseUtils.queryNumEntries(db, CONTACTS_TABLE_NAME);
+        return (int) DatabaseUtils.queryNumEntries(db, COMPTEUR_TABLE_NAME);
     }
 
     public boolean updateContact(Integer id, String name, String turns) {
@@ -67,13 +68,13 @@ class DBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
         contentValues.put("turns", turns);
-        db.update("contacts", contentValues, "id = ? ", new String[]{Integer.toString(id)});
+        db.update("gamers", contentValues, "id = ? ", new String[]{Integer.toString(id)});
         return true;
     }
 
     public Integer deleteContact(Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete("contacts",
+        return db.delete("gamers",
                 "id = ? ",
                 new String[]{Integer.toString(id)});
     }
@@ -83,11 +84,11 @@ class DBHelper extends SQLiteOpenHelper {
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from contacts", null);
+        Cursor res = db.rawQuery("select * from gamers DESC", null);
         res.moveToFirst();
 
         while (!res.isAfterLast()) {
-            array_list.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAME)));
+            array_list.add(res.getString(res.getColumnIndex(COMPTEUR_COLUMN_NAME)));
             res.moveToNext();
         }
         return array_list;
