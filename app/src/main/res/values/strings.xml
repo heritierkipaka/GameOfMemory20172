@@ -32,7 +32,6 @@
     <string-array name="type">
         <item>New Game</item>
         <item>2 X 3</item>
-        <item>3 X 3</item>
         <item>3 X 4</item>
         <item>4 X 4</item>
         <item>4 X 5</item>

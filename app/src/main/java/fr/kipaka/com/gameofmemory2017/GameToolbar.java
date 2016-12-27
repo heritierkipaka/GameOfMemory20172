@@ -39,9 +39,9 @@ import java.util.TimerTask;
 public class GameToolbar extends AppCompatActivity {
 
     private static final String PREF_SAVED_GAME = "saved_game";
+    private static final Object lock = new Object();
     private static int ROW_COUNT = -1;
     private static int COL_COUNT = -1;
-    private static Object lock = new Object();
     public Toolbar mToolbar;
     public TableLayout mainTable;
     public UpdateCardsHandler handler;
@@ -125,16 +125,16 @@ public class GameToolbar extends AppCompatActivity {
                         x=2;y=3;
                         break;
                     case 2:
-                        x=3;y=3;
+                        x = 3;
+                        y = 4;
                         break;
                     case 3:
-                        x=3;y=4;
+                        x = 4;
+                        y = 4;
                         break;
                     case 4:
-                        x=4;y=4;
-                        break;
-                    case 5:
-                        x=4;y=5;
+                        x = 4;
+                        y = 5;
                         break;
                     default:
                         return;
@@ -199,14 +199,7 @@ public class GameToolbar extends AppCompatActivity {
         images.add(getResources().getDrawable(R.drawable.card11));
         images.add(getResources().getDrawable(R.drawable.card12));
         images.add(getResources().getDrawable(R.drawable.card13));
-        images.add(getResources().getDrawable(R.drawable.card14));
-        images.add(getResources().getDrawable(R.drawable.card15));
-        images.add(getResources().getDrawable(R.drawable.card16));
-       // images.add(getResources().getDrawable(R.drawable.card17));
-       // images.add(getResources().getDrawable(R.drawable.card18));
-       // images.add(getResources().getDrawable(R.drawable.card19));
-       // images.add(getResources().getDrawable(R.drawable.card20));
-      //  images.add(getResources().getDrawable(R.drawable.card21));
+
 
     }
 
@@ -221,7 +214,7 @@ public class GameToolbar extends AppCompatActivity {
             ArrayList<Integer> list = new ArrayList<>();
 
             for(int i=0;i<size;i++){
-                list.add(new Integer(i));
+                list.add(Integer.valueOf(i));
             }
 
             // la fonction aleatoire
@@ -234,7 +227,7 @@ public class GameToolbar extends AppCompatActivity {
                     t = r.nextInt(i);
                 }
 // la division par 2 (sur le dernier size) met les cartes en doubles !! car deux cartes ont le mm nombre dans la matrice
-                t=list.remove(t).intValue();
+                t = list.remove(t);
                 cards[i%COL_COUNT][i/COL_COUNT]=t%(size/2);
 
                 Log.i("loadCards()", "card["+(i%COL_COUNT)+
@@ -286,7 +279,7 @@ public class GameToolbar extends AppCompatActivity {
         d("Saving Game");
         getPreferences(MODE_PRIVATE).edit().
                 putString(PREF_SAVED_GAME, null).
-                commit();
+                apply();
     }
 
     protected void d(String message) {

@@ -27,7 +27,7 @@ public class MusicMenu extends AppCompatActivity {
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.tb_main);
         mToolbar.setTitle("Game Of Memory!");
-        mToolbar.setSubtitle("Menu Principal");
+        mToolbar.setSubtitle("Media Player");
         mToolbar.setLogo(R.drawable.ic_launcher);
         setSupportActionBar(mToolbar);
 
@@ -128,6 +128,12 @@ public class MusicMenu extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mp.start();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
         mp.release();
     }
 
