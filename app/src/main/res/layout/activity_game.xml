@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/TableLayout03"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/TableLayout03"
+    android:layout_height="fill_parent"
     android:background="@color/white"
     tools:context=".GameToolbar">
 
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:elevation="4dp"
-        android:layout_height="?attr/actionBarSize"
         android:layout_width="match_parent"
-        android:minHeight="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:titleTextColor="@android:color/background_light"
-        app:subtitleTextColor="@color/grey" />
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        app:subtitleTextColor="@color/grey"
+        app:titleTextColor="@android:color/background_light" />
 
 
     <TableRow android:id="@+id/TableRow04"
@@ -26,21 +28,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:spinnerMode="dialog"
-            android:minWidth="50dp"
             android:minHeight="59dp"
-            android:scrollbarSize="20dp">
+            android:minWidth="50dp"
+            android:scrollbarSize="20dp"
+            android:spinnerMode="dialog">
         </Spinner>
     </TableRow>
 
     <TableRow android:id="@+id/TableRow05"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+        <TextView
             android:id="@+id/tv1"
-            android:paddingLeft="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingLeft="10sp"
             tools:ignore="RtlHardcoded,RtlSymmetry">
 
         </TextView>
@@ -51,14 +55,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center">
-        <TextView android:layout_width="wrap_content"
+
+        <TextView
+            android:id="@+id/mainTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:visibility="visible"
-            android:textSize="30sp"
             android:paddingTop="20sp"
             android:textColor="#EEFFAA"
-            android:id="@+id/mainTitle">
+            android:textSize="30sp"
+            android:visibility="visible">
         </TextView>
     </TableRow>
 
@@ -76,14 +82,14 @@
         android:gravity="center">
 
         <ImageView android:id="@+id/ImageView01"
-            android:layout_width="218dp"
-            android:layout_height="97dp"
-            android:background="@drawable/bring2"
+            android:layout_width="418dp"
+            android:layout_height="180dp"
             android:layout_gravity="center"
-            android:contentDescription=""
-            tools:ignore="ContentDescription"
             android:adjustViewBounds="true"
-            android:cropToPadding="true">
+            android:background="@drawable/bring2"
+            android:contentDescription=""
+            android:cropToPadding="true"
+            tools:ignore="ContentDescription">
         </ImageView>
     </LinearLayout>
 

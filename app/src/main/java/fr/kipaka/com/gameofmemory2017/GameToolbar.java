@@ -160,6 +160,8 @@ public class GameToolbar extends AppCompatActivity {
         //enleve le menu principal
         mainTable.removeView(findViewById(R.id.TableRow01));
          mainTable.removeView(findViewById(R.id.linearLayout));
+        mainTable.removeView(findViewById(R.id.ImageView01));
+        mainTable.removeView(findViewById(R.id.LinearLayout01));
 
         TableRow tr = ((TableRow)findViewById(R.id.TableRow03));
         tr.removeAllViews();
