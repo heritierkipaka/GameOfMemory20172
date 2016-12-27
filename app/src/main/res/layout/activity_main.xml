@@ -16,22 +16,22 @@
 
     <!-- Button A propos -->
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:id="@+id/linearLayout">
+        android:orientation="vertical">
     <!-- creation d'une ligne vertical au milieu -->
         <Button
             android:id="@+id/ApprosMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="A propos"
             android:layout_gravity="center_horizontal"
             android:onClick="showApprosMenu"
-            tools:ignore="HardcodedText"
+            android:text="A propos"
+            android:textColor="@android:color/background_light"
             android:textSize="18sp"
-            android:textColor="@android:color/background_light" />
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
 
@@ -39,74 +39,90 @@
     <!-- Toolbar du Haut -->
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_main"
-        android:elevation="4dp"
-        android:layout_height="?attr/actionBarSize"
         android:layout_width="match_parent"
-        android:minHeight="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:layout_alignParentTop="true"
+        android:layout_height="?attr/actionBarSize"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        tools:ignore="RtlHardcoded,UnusedAttribute"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        app:subtitleTextColor="@color/grey"
         app:titleTextColor="@android:color/background_light"
-        app:subtitleTextColor="@color/grey" />
+        tools:ignore="RtlHardcoded,UnusedAttribute" />
 
-    <!-- Button HIGH SCORES -->
-    <Button
-        android:id="@+id/HighScores"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:onClick="showHighScoresToolbar"
-        android:text="HIGH SCORES"
-        tools:ignore="HardcodedText"
-        android:layout_above="@+id/linearLayout"
-        android:layout_alignParentStart="true"
-        android:textColor="@android:color/background_light"
-        android:textSize="18sp" />
+  <!-- Button HIGH SCORES -->
 
-    <!-- Button MEMORY GAME -->
-    <Button
-        android:id="@+id/GameToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:onClick="showGameToolbar"
-        android:text="MEMORY GAME"
-        tools:ignore="HardcodedText"
-        android:layout_above="@+id/HighScores"
-        android:layout_alignParentStart="true"
-        android:textColor="@android:color/background_light"
-        android:textSize="18sp" />
+  <!-- Button HIGH SCORES -->
 
-    <!-- GoM -->
+  <!-- Button MEMORY GAME -->
+
+  <!-- GoM -->
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GoM"
-        android:textColor="@color/colorPrimary"
-        tools:ignore="HardcodedText,UnusedAttribute"
-        android:id="@+id/textView"
-        android:textSize="30sp"
-        android:textStyle="normal|bold"
-        android:textAlignment="center"
-        android:fontFamily="casual"
         android:layout_above="@+id/inc_tb_bottom"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp" />
+        android:layout_marginBottom="13dp"
+        android:fontFamily="casual"
+        android:text="GoM"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        android:textStyle="normal|bold"
+        tools:ignore="HardcodedText,UnusedAttribute" />
 
-    <!-- IMAGE DU JEU -->
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/card23"
-        android:id="@+id/imageView2"
-        android:layout_above="@+id/inc_tb_bottom"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="66dp"
-        android:contentDescription=""
-        tools:ignore="ContentDescription" />
 
+  <Button
+      android:id="@+id/MusicMenu"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_below="@+id/linearLayout"
+      android:layout_gravity="center_horizontal"
+      android:onClick="showMusicMenu"
+      android:text="@string/Music"
+      android:textColor="@android:color/background_light"
+      android:textSize="18sp"
+      tools:ignore="HardcodedText" />
+
+  <Button
+      android:id="@+id/HighScores"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_above="@+id/linearLayout"
+      android:layout_alignParentStart="true"
+      android:layout_gravity="center_horizontal"
+      android:onClick="showHighScoresToolbar"
+      android:text="HIGH SCORES"
+      android:textColor="@android:color/background_light"
+      android:textSize="18sp"
+      tools:ignore="HardcodedText" />
+
+  <Button
+      android:id="@+id/GameToolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_above="@+id/HighScores"
+      android:layout_alignParentStart="true"
+      android:layout_gravity="center_horizontal"
+      android:onClick="showGameToolbar"
+      android:text="MEMORY GAME"
+      android:textColor="@android:color/background_light"
+      android:textSize="18sp"
+      tools:ignore="HardcodedText" />
+
+  <!-- IMAGE DU JEU -->
+  <ImageView
+      android:id="@+id/imageView2"
+      android:layout_width="200dp"
+      android:layout_height="200dp"
+      android:layout_below="@+id/linearLayout"
+      android:layout_centerHorizontal="true"
+      android:contentDescription=""
+      app:srcCompat="@drawable/card23"
+      tools:ignore="ContentDescription" />
 
 
 </RelativeLayout>

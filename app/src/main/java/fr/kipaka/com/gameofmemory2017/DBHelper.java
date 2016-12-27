@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 class DBHelper extends SQLiteOpenHelper {
 
-    public static final String COMPTEUR_COLUMN_ID = "id";
+    static final String COMPTEUR_COLUMN_ID = "id";
     static final String COMPTEUR_COLUMN_NAME = "name";
     static final String COMPTEUR_COLUMN_TURNS = "turns";
     private static final String DATABASE_NAME = "Compteur.db";
@@ -44,7 +44,7 @@ class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    boolean insertContact(String name, String turns) {
+    boolean insertGamers(String name, String turns) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
@@ -63,7 +63,7 @@ class DBHelper extends SQLiteOpenHelper {
         return (int) DatabaseUtils.queryNumEntries(db, COMPTEUR_TABLE_NAME);
     }
 
-    public boolean updateContact(Integer id, String name, String turns) {
+    boolean updateContact(Integer id, String name, String turns) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
@@ -72,14 +72,14 @@ class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public Integer deleteContact(Integer id) {
+    Integer deleteContact(Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete("gamers",
                 "id = ? ",
                 new String[]{Integer.toString(id)});
     }
 
-    public ArrayList<String> getAllScores() {
+    ArrayList<String> getAllScores() {
         ArrayList<String> array_list = new ArrayList<>();
 
         //hp = new HashMap();

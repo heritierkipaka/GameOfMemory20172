@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import java.util.ArrayList;
 
 import static fr.kipaka.com.gameofmemory2017.R.id.retour;
@@ -23,34 +24,7 @@ public class HighScoresToolbar extends AppCompatActivity {
     Toolbar mToolbar;
     Toolbar mToolbarBottom;
 
-    //affichage du menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_display, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.item100:
-                Bundle dataBundle = new Bundle();
-                dataBundle.putInt("id", 0);
-
-                Intent intent = new Intent(getApplicationContext(), DisplayScores.class);
-                intent.putExtras(dataBundle);
-                startActivity(intent);
-                return true;
-
-            case retour:
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
-
+    //Les items du menu d'en bas les reseaux sociaux
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +71,7 @@ public class HighScoresToolbar extends AppCompatActivity {
                 Toast.makeText(HighScoresToolbar.this, "Développeur KIPAKA Mubwala AND TALEB Nassim!", Toast.LENGTH_SHORT).show();
             }
         });
+        //FIN - Les items du menu d'en bas les reseaux sociaux
 
 
         mydb = new DBHelper(this);
@@ -121,6 +96,36 @@ public class HighScoresToolbar extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    //affichage du menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_display, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.item100:
+                Bundle dataBundle = new Bundle();
+                dataBundle.putInt("id", 0);
+
+                Intent intent = new Intent(getApplicationContext(), DisplayScores.class);
+                intent.putExtras(dataBundle);
+                startActivity(intent);
+                return true;
+
+            case retour:
+                finish();
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
     }
 

@@ -4,23 +4,20 @@ package fr.kipaka.com.gameofmemory2017;
  * Created by M0297357 on 26/12/2016.
  */
 
-import android.os.Bundle;
-import android.app.Activity;
 import android.app.AlertDialog;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DisplayScores extends Activity {
+public class DisplayScores extends AppCompatActivity {
     TextView turns;
     TextView name;
     int id_To_Update = 0;
@@ -144,7 +141,7 @@ public class DisplayScores extends Activity {
                     Toast.makeText(getApplicationContext(), "not Updated", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                if (mydb.insertContact(name.getText().toString(), turns.getText().toString())) {
+                if (mydb.insertGamers(name.getText().toString(), turns.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "Score du gamers ajouté",
                             Toast.LENGTH_SHORT).show();
                 } else {

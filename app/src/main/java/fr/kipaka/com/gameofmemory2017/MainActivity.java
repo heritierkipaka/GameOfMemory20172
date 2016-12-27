@@ -14,21 +14,21 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static long time;
-    protected Toolbar mToolbarBottom;
-    private Toolbar mToolbar;
+    Toolbar mToolbarBottom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mToolbar = (Toolbar) findViewById(R.id.tb_main);
+        //La toolbar d'en haut avec les Nom et image du jeu
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.tb_main);
         mToolbar.setTitle("Game Of Memory!");
         mToolbar.setSubtitle("Menu Principal");
         mToolbar.setLogo(R.drawable.ic_launcher);
         setSupportActionBar(mToolbar);
 
-
+        //Les items du menu d'en bas les reseaux sociaux
         mToolbarBottom = (Toolbar) findViewById(R.id.inc_tb_bottom);
         mToolbarBottom.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //Les items du menu d'en haut
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -108,6 +109,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void showApprosMenu(View view) {
         Intent intent = new Intent(this, ApprosMenu.class);
+        startActivity(intent);
+    }
+
+    public void showMusicMenu(View view) {
+        Intent intent = new Intent(this, MusicMenu.class);
         startActivity(intent);
     }
 
