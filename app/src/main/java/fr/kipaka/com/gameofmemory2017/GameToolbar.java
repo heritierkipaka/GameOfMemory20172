@@ -1,9 +1,11 @@
 package fr.kipaka.com.gameofmemory2017;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -58,6 +61,8 @@ public class GameToolbar extends AppCompatActivity {
      * Nombre de paires de carte restantes
      */
     private int countPairOfCards;
+
+    private long durationStart;
 
     //affichage du menu
     @Override
@@ -402,11 +407,34 @@ public class GameToolbar extends AppCompatActivity {
 
         Log.i("loadCards()","size=" + countPairOfCards);
 
-        int score = (int)( (double)(1.0/(double)turns) * (double)10000);
+        final int score = (int)( (double)(1.0/(double)turns) * (double)10000);
 
-        dbHelper.insertGamers("Toto", score);
+        final EditText txtUrl = new EditText(this);
 
-        Toast.makeText(GameToolbar.this, " Gagné !!!! en "+turns+" essais \n Votre score est : "+score, Toast.LENGTH_SHORT).show();
+// Set the default text to a link of the Queen
+        txtUrl.setHint("Votre nom");
+
+
+        new AlertDialog.Builder(this)
+                .setTitle("Gagné!!!")
+                .setMessage("Vous avez réussi "+turns+" essais \n Votre score est : "+score)
+                .setView(txtUrl)
+                .setPositiveButton("Valider", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        String name = txtUrl.getText().toString();
+                        Log.i("loadCards()","name =" +name);
+
+                        dbHelper.insertGamers(name, score);
+
+                        Toast.makeText(GameToolbar.this, " Gagné !!!! en "+turns+" essais \n Votre score est : "+score, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }
+                })
+                .show();
+
     }
 
 
