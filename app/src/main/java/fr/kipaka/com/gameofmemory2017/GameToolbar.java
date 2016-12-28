@@ -53,6 +53,11 @@ public class GameToolbar extends AppCompatActivity {
     private Cards firstCard;
     private Cards seconedCard;
     private ButtonListener buttonListener;
+    private DBHelper dbHelper;
+    /**
+     * Nombre de paires de carte restantes
+     */
+    private int countPairOfCards;
 
     //affichage du menu
     @Override
@@ -84,6 +89,9 @@ public class GameToolbar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        dbHelper = new DBHelper(this);
+
         setContentView(R.layout.activity_game);
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -155,11 +163,14 @@ public class GameToolbar extends AppCompatActivity {
         ROW_COUNT = r;
         COL_COUNT = c;
 
+        //Nombre de paires = (X * Y) / 2
+        countPairOfCards = (c*r) / 2;
+
         cards = new int [COL_COUNT] [ROW_COUNT];
 
         //enleve le menu principal
         mainTable.removeView(findViewById(R.id.TableRow01));
-         mainTable.removeView(findViewById(R.id.linearLayout));
+        mainTable.removeView(findViewById(R.id.linearLayout));
         mainTable.removeView(findViewById(R.id.ImageView01));
         mainTable.removeView(findViewById(R.id.LinearLayout01));
 
@@ -211,7 +222,7 @@ public class GameToolbar extends AppCompatActivity {
         try{
             int size = ROW_COUNT*COL_COUNT;
 
-            Log.i("loadCards()","size=" + size);
+            Log.i("loadCards() >>> ","size=" + size);
 
             ArrayList<Integer> list = new ArrayList<>();
 
@@ -363,6 +374,11 @@ public class GameToolbar extends AppCompatActivity {
             if(cards[seconedCard.x][seconedCard.y] == cards[firstCard.x][firstCard.y]){
                 firstCard.button.setVisibility(View.INVISIBLE);
                 seconedCard.button.setVisibility(View.INVISIBLE);
+                countPairOfCards --;
+                Log.i("RRRRRRR", "  " +countPairOfCards);
+                if(countPairOfCards <= 0){
+                    onTurnAllCards();
+                }
             }
             else {
                 //sinon on remet l'image de fond
@@ -374,6 +390,25 @@ public class GameToolbar extends AppCompatActivity {
             seconedCard=null;
         }
     }
+
+
+    /**
+     * Instructions à effectuer une fois toutes les cartes retournées
+     *
+     * TODO ajouter le facteur temps dans le calcul du score
+     */
+    private void onTurnAllCards() {
+        Log.i("rrrrrr", " Gagné !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " +countPairOfCards);
+
+        Log.i("loadCards()","size=" + countPairOfCards);
+
+        int score = (int)( (double)(1.0/(double)turns) * (double)10000);
+
+        dbHelper.insertGamers("Toto", score);
+
+        Toast.makeText(GameToolbar.this, " Gagné !!!! en "+turns+" essais \n Votre score est : "+score, Toast.LENGTH_SHORT).show();
+    }
+
 
     //** La classe des Cartes X Y **/
     public class Cards {

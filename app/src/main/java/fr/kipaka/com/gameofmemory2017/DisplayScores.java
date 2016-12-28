@@ -44,7 +44,7 @@ public class DisplayScores extends AppCompatActivity {
                 rs.moveToFirst();
 
                 String nam = rs.getString(rs.getColumnIndex(DBHelper.COMPTEUR_COLUMN_NAME));
-                String phon = rs.getString(rs.getColumnIndex(DBHelper.COMPTEUR_COLUMN_TURNS));
+                String phon = rs.getString(rs.getColumnIndex(DBHelper.COMPTEUR_COLUMN_SCORE));
                 String id = rs.getString(rs.getColumnIndex(DBHelper.COMPTEUR_COLUMN_ID));
 
                 if (!rs.isClosed()) {
@@ -133,7 +133,7 @@ public class DisplayScores extends AppCompatActivity {
         if (extras != null) {
             int Value = extras.getInt("id");
             if (Value > 0) {
-                if (mydb.updateContact(id_To_Update, name.getText().toString(), turns.getText().toString())) {
+                if (mydb.updateContact(id_To_Update, name.getText().toString(), Integer.valueOf(turns.getText().toString()))) {
                     Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
@@ -141,7 +141,7 @@ public class DisplayScores extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "not Updated", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                if (mydb.insertGamers(name.getText().toString(), turns.getText().toString())) {
+                if (mydb.insertGamers(name.getText().toString(), Integer.valueOf(turns.getText().toString()))) {
                     Toast.makeText(getApplicationContext(), "Score du gamers ajouté",
                             Toast.LENGTH_SHORT).show();
                 } else {

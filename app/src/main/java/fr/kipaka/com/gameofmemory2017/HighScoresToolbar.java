@@ -14,6 +14,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import static fr.kipaka.com.gameofmemory2017.R.id.retour;
 
@@ -75,8 +77,8 @@ public class HighScoresToolbar extends AppCompatActivity {
 
 
         mydb = new DBHelper(this);
-        ArrayList<String> array_list = mydb.getAllScores();
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, array_list);
+        List<Map<String, Object>> rows = mydb.getAllScores();
+        ArrayAdapter<Map<String, Object>> arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, rows);
 
         ListView obj = (ListView) findViewById(R.id.listView1);
         obj.setAdapter(arrayAdapter);
