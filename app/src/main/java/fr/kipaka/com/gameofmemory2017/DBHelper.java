@@ -13,12 +13,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 class DBHelper extends SQLiteOpenHelper {
 
     static final String COMPTEUR_COLUMN_ID = "id";
     static final String COMPTEUR_COLUMN_NAME = "name";
-    static final String COMPTEUR_COLUMN_TURNS = "turns";
+    static final String COMPTEUR_COLUMN_SCORE = "score";
     private static final String DATABASE_NAME = "Compteur.db";
     private static final String COMPTEUR_TABLE_NAME = "gamers";
     private HashMap hp;
@@ -33,7 +35,7 @@ class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table gamers " +
-                        "(id integer primary key, name text,turns text)"
+                        "(id integer primary key, name text,score integer)"
         );
     }
 
@@ -44,11 +46,11 @@ class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    boolean insertGamers(String name, String turns) {
+    boolean insertGamers(String name, Integer score) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
-        contentValues.put("turns", turns);
+        contentValues.put("score", score);
         db.insert("gamers", null, contentValues);
         return true;
     }
@@ -63,11 +65,11 @@ class DBHelper extends SQLiteOpenHelper {
         return (int) DatabaseUtils.queryNumEntries(db, COMPTEUR_TABLE_NAME);
     }
 
-    boolean updateContact(Integer id, String name, String turns) {
+    boolean updateContact(Integer id, String name, Integer score) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
-        contentValues.put("turns", turns);
+        contentValues.put("score", score);
         db.update("gamers", contentValues, "id = ? ", new String[]{Integer.toString(id)});
         return true;
     }
@@ -79,19 +81,24 @@ class DBHelper extends SQLiteOpenHelper {
                 new String[]{Integer.toString(id)});
     }
 
-    ArrayList<String> getAllScores() {
-        ArrayList<String> array_list = new ArrayList<>();
+   List<Map<String, Object>> getAllScores() {
+        List<Map<String, Object>> rows = new ArrayList<>();
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from gamers ORDER BY turns DESC", null);
+        Cursor res = db.rawQuery("select * from gamers ORDER BY score DESC", null);
         res.moveToFirst();
 
         while (!res.isAfterLast()) {
-            array_list.add(res.getString(res.getColumnIndex(COMPTEUR_COLUMN_NAME)));
+            Map<String, Object> row = new HashMap<>();
+
+            row.put(COMPTEUR_COLUMN_NAME, res.getString(res.getColumnIndex(COMPTEUR_COLUMN_NAME)));
+            row.put(COMPTEUR_COLUMN_SCORE, res.getInt(res.getColumnIndex(COMPTEUR_COLUMN_SCORE)));
+
+            rows.add(row);
             res.moveToNext();
         }
-        return array_list;
+        return rows;
     }
 
 

@@ -1,9 +1,11 @@
 package fr.kipaka.com.gameofmemory2017;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -53,6 +56,13 @@ public class GameToolbar extends AppCompatActivity {
     private Cards firstCard;
     private Cards seconedCard;
     private ButtonListener buttonListener;
+    private DBHelper dbHelper;
+    /**
+     * Nombre de paires de carte restantes
+     */
+    private int countPairOfCards;
+
+    private long durationStart;
 
     //affichage du menu
     @Override
@@ -84,6 +94,9 @@ public class GameToolbar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        dbHelper = new DBHelper(this);
+
         setContentView(R.layout.activity_game);
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -155,11 +168,14 @@ public class GameToolbar extends AppCompatActivity {
         ROW_COUNT = r;
         COL_COUNT = c;
 
+        //Nombre de paires = (X * Y) / 2
+        countPairOfCards = (c*r) / 2;
+
         cards = new int [COL_COUNT] [ROW_COUNT];
 
         //enleve le menu principal
         mainTable.removeView(findViewById(R.id.TableRow01));
-         mainTable.removeView(findViewById(R.id.linearLayout));
+        mainTable.removeView(findViewById(R.id.linearLayout));
         mainTable.removeView(findViewById(R.id.ImageView01));
         mainTable.removeView(findViewById(R.id.LinearLayout01));
 
@@ -211,7 +227,7 @@ public class GameToolbar extends AppCompatActivity {
         try{
             int size = ROW_COUNT*COL_COUNT;
 
-            Log.i("loadCards()","size=" + size);
+            Log.i("loadCards() >>> ","size=" + size);
 
             ArrayList<Integer> list = new ArrayList<>();
 
@@ -363,6 +379,11 @@ public class GameToolbar extends AppCompatActivity {
             if(cards[seconedCard.x][seconedCard.y] == cards[firstCard.x][firstCard.y]){
                 firstCard.button.setVisibility(View.INVISIBLE);
                 seconedCard.button.setVisibility(View.INVISIBLE);
+                countPairOfCards --;
+                Log.i("RRRRRRR", "  " +countPairOfCards);
+                if(countPairOfCards <= 0){
+                    onTurnAllCards();
+                }
             }
             else {
                 //sinon on remet l'image de fond
@@ -374,6 +395,48 @@ public class GameToolbar extends AppCompatActivity {
             seconedCard=null;
         }
     }
+
+
+    /**
+     * Instructions à effectuer une fois toutes les cartes retournées
+     *
+     * TODO ajouter le facteur temps dans le calcul du score
+     */
+    private void onTurnAllCards() {
+        Log.i("rrrrrr", " Gagné !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " +countPairOfCards);
+
+        Log.i("loadCards()","size=" + countPairOfCards);
+
+        final int score = (int)( (double)(1.0/(double)turns) * (double)10000);
+
+        final EditText txtUrl = new EditText(this);
+
+// Set the default text to a link of the Queen
+        txtUrl.setHint("Votre nom");
+
+
+        new AlertDialog.Builder(this)
+                .setTitle("Gagné!!!")
+                .setMessage("Vous avez réussi "+turns+" essais \n Votre score est : "+score)
+                .setView(txtUrl)
+                .setPositiveButton("Valider", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        String name = txtUrl.getText().toString();
+                        Log.i("loadCards()","name =" +name);
+
+                        dbHelper.insertGamers(name, score);
+
+                        Toast.makeText(GameToolbar.this, " Gagné !!!! en "+turns+" essais \n Votre score est : "+score, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }
+                })
+                .show();
+
+    }
+
 
     //** La classe des Cartes X Y **/
     public class Cards {
