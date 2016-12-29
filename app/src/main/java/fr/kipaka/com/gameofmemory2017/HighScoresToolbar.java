@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -78,14 +79,14 @@ public class HighScoresToolbar extends AppCompatActivity {
 
         mydb = new DBHelper(this);
         List<Map<String, Object>> rows = mydb.getAllScores();
-        ArrayAdapter<Map<String, Object>> arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, rows);
+        ListOfMapArrayAdapter arrayAdapter = new ListOfMapArrayAdapter(this, R.layout.listview_item_row, rows);
 
         ListView obj = (ListView) findViewById(R.id.listView1);
+
         obj.setAdapter(arrayAdapter);
-        obj.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* obj.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                // TODO Auto-generated method stub
                 int id_To_Search = arg2 + 1;
 
                 Bundle dataBundle = new Bundle();
@@ -96,7 +97,7 @@ public class HighScoresToolbar extends AppCompatActivity {
                 intent.putExtras(dataBundle);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
     }

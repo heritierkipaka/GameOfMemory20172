@@ -45,10 +45,10 @@
     <string name="edit">Edit Scores</string>
     <string name="delete">Delete Scores</string>
     <string name="title_activity_display_contact">DisplayContact</string>
+    <string name="score"> Score </string>
     <string name="turns"> Nombre de tours</string>
-    <string name="id_gamers"> Joueurs </string>
-    <string name="save">Save Contact</string>
-    <string name="deleteContact">Are you sure, you want to delete it.</string>
+    <string name="duration"> Durée </string>
+    <string name="id_gamers"> Nom </string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 

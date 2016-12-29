@@ -55,6 +55,9 @@
 
     </ScrollView>
 
+
+
+
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
@@ -63,15 +66,7 @@
         android:layout_below="@+id/ScoreTitleView"
         android:layout_marginTop="58dp"></ListView>
 
-    <TextView
-        android:id="@+id/GameView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_centerHorizontal="true"
-        android:text="Data Base"
-        android:textColor="?attr/editTextColor"
-        android:textSize="30dp"
-        tools:ignore="HardcodedText,SpUsage" />
+
+
 
 </RelativeLayout>

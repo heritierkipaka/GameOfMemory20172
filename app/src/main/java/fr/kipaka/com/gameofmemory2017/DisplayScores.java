@@ -50,8 +50,7 @@ public class DisplayScores extends AppCompatActivity {
                 if (!rs.isClosed()) {
                     rs.close();
                 }
-                Button b = (Button) findViewById(R.id.button1);
-                b.setVisibility(View.INVISIBLE);
+
 
                 name.setText(nam);
                 name.setFocusable(false);
@@ -101,7 +100,7 @@ public class DisplayScores extends AppCompatActivity {
             case R.id.Delete_Scores:
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.deleteContact)
+                builder.setMessage("deleteScore")
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 mydb.deleteScore(id_To_Update);
