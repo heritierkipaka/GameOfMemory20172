@@ -20,7 +20,7 @@ import android.widget.Toast;
 public class DisplayScores extends AppCompatActivity {
     TextView turns;
     TextView name;
-    int id_To_Update = 0;
+    Integer id_To_Update = 0;
     private DBHelper mydb;
 
     @Override
@@ -39,7 +39,7 @@ public class DisplayScores extends AppCompatActivity {
 
             if (Value > 0) {
                 //means this is the view part not the add contact part.
-                Cursor rs = mydb.getData(Value);
+                Cursor rs = mydb.getScore(Value);
                 id_To_Update = Value;
                 rs.moveToFirst();
 
@@ -50,8 +50,7 @@ public class DisplayScores extends AppCompatActivity {
                 if (!rs.isClosed()) {
                     rs.close();
                 }
-                Button b = (Button) findViewById(R.id.button1);
-                b.setVisibility(View.INVISIBLE);
+
 
                 name.setText(nam);
                 name.setFocusable(false);
@@ -101,10 +100,10 @@ public class DisplayScores extends AppCompatActivity {
             case R.id.Delete_Scores:
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.deleteContact)
+                builder.setMessage("deleteScore")
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                mydb.deleteContact(id_To_Update);
+                                mydb.deleteScore(id_To_Update);
                                 Toast.makeText(getApplicationContext(), "Deleted Successfully",
                                         Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -133,7 +132,7 @@ public class DisplayScores extends AppCompatActivity {
         if (extras != null) {
             int Value = extras.getInt("id");
             if (Value > 0) {
-                if (mydb.updateContact(id_To_Update, name.getText().toString(), Integer.valueOf(turns.getText().toString()))) {
+                if (mydb.updateScore(id_To_Update, name.getText().toString(), Integer.valueOf(turns.getText().toString()), Integer.valueOf(-111), Integer.valueOf(-222))) {
                     Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
@@ -141,7 +140,7 @@ public class DisplayScores extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "not Updated", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                if (mydb.insertGamers(name.getText().toString(), Integer.valueOf(turns.getText().toString()))) {
+                if (mydb.insertScore(name.getText().toString(), Integer.valueOf(turns.getText().toString()),  Integer.valueOf(-111), Integer.valueOf(-222))) {
                     Toast.makeText(getApplicationContext(), "Score du gamers ajouté",
                             Toast.LENGTH_SHORT).show();
                 } else {

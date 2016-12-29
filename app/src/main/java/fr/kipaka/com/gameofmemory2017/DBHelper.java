@@ -21,8 +21,13 @@ class DBHelper extends SQLiteOpenHelper {
     static final String COMPTEUR_COLUMN_ID = "id";
     static final String COMPTEUR_COLUMN_NAME = "name";
     static final String COMPTEUR_COLUMN_SCORE = "score";
+
+    static final String COMPTEUR_COLUMN_TURNS = "turns";
+    static final String COMPTEUR_COLUMN_DURATION = "duration";
+
+
     private static final String DATABASE_NAME = "Compteur.db";
-    private static final String COMPTEUR_TABLE_NAME = "gamers";
+    private static final String COMPTEUR_TABLE_NAME = "scores";
     private HashMap hp;
 
 
@@ -32,32 +37,33 @@ class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // TODO Auto-generated method stub
         db.execSQL(
-                "create table gamers " +
-                        "(id integer primary key, name text,score integer)"
+                "CREATE TABLE " + COMPTEUR_TABLE_NAME + " " +
+                        "(" + COMPTEUR_COLUMN_ID + " integer primary key, " + COMPTEUR_COLUMN_NAME + " text, " + COMPTEUR_COLUMN_SCORE + " integer, " + COMPTEUR_COLUMN_TURNS + " integer, " + COMPTEUR_COLUMN_DURATION + " integer)"
         );
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // TODO Auto-generated method stub
-        db.execSQL("DROP TABLE IF EXISTS gamers");
+        db.execSQL("DROP TABLE IF EXISTS " + COMPTEUR_TABLE_NAME);
         onCreate(db);
     }
 
-    boolean insertGamers(String name, Integer score) {
+    boolean insertScore(String name, Integer score, Integer turns, Integer duration) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", name);
-        contentValues.put("score", score);
-        db.insert("gamers", null, contentValues);
+        contentValues.put(COMPTEUR_COLUMN_NAME, name);
+        contentValues.put(COMPTEUR_COLUMN_SCORE, score);
+        contentValues.put(COMPTEUR_COLUMN_TURNS, turns);
+        contentValues.put(COMPTEUR_COLUMN_DURATION, duration);
+
+        db.insert(COMPTEUR_TABLE_NAME, null, contentValues);
         return true;
     }
 
-    Cursor getData(int id) {
+    Cursor getScore(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("select * from gamers where id=" + id + "", null);
+        return db.rawQuery("SELECT * FROM " + COMPTEUR_TABLE_NAME + " where " + COMPTEUR_COLUMN_ID + "=" + id + "", null);
     }
 
     public int numberOfRows() {
@@ -65,28 +71,30 @@ class DBHelper extends SQLiteOpenHelper {
         return (int) DatabaseUtils.queryNumEntries(db, COMPTEUR_TABLE_NAME);
     }
 
-    boolean updateContact(Integer id, String name, Integer score) {
+    boolean updateScore(Integer id, String name, Integer score, Integer turns, Integer duration) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", name);
-        contentValues.put("score", score);
-        db.update("gamers", contentValues, "id = ? ", new String[]{Integer.toString(id)});
+        contentValues.put(COMPTEUR_COLUMN_NAME, name);
+        contentValues.put(COMPTEUR_COLUMN_SCORE, score);
+        contentValues.put(COMPTEUR_COLUMN_TURNS, turns);
+        contentValues.put(COMPTEUR_COLUMN_DURATION, duration);
+        db.update(COMPTEUR_TABLE_NAME, contentValues, COMPTEUR_COLUMN_ID + " = ? ", new String[]{Integer.toString(id)});
         return true;
     }
 
-    Integer deleteContact(Integer id) {
+    Integer deleteScore(Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete("gamers",
-                "id = ? ",
+        return db.delete(COMPTEUR_TABLE_NAME,
+                COMPTEUR_COLUMN_ID + " = ? ",
                 new String[]{Integer.toString(id)});
     }
 
-   List<Map<String, Object>> getAllScores() {
+    List<Map<String, Object>> getAllScores() {
         List<Map<String, Object>> rows = new ArrayList<>();
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from gamers ORDER BY score DESC", null);
+        Cursor res = db.rawQuery("SELECT * FROM " + COMPTEUR_TABLE_NAME + " ORDER BY " + COMPTEUR_COLUMN_SCORE + " DESC", null);
         res.moveToFirst();
 
         while (!res.isAfterLast()) {
@@ -94,6 +102,8 @@ class DBHelper extends SQLiteOpenHelper {
 
             row.put(COMPTEUR_COLUMN_NAME, res.getString(res.getColumnIndex(COMPTEUR_COLUMN_NAME)));
             row.put(COMPTEUR_COLUMN_SCORE, res.getInt(res.getColumnIndex(COMPTEUR_COLUMN_SCORE)));
+            row.put(COMPTEUR_COLUMN_TURNS, res.getInt(res.getColumnIndex(COMPTEUR_COLUMN_TURNS)));
+            row.put(COMPTEUR_COLUMN_DURATION, res.getInt(res.getColumnIndex(COMPTEUR_COLUMN_DURATION)));
 
             rows.add(row);
             res.moveToNext();

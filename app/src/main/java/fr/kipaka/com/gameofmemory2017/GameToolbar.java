@@ -3,6 +3,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
@@ -23,7 +24,9 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
@@ -62,7 +65,12 @@ public class GameToolbar extends AppCompatActivity {
      */
     private int countPairOfCards;
 
+    /**
+     * Demarage du jeu
+     */
     private long durationStart;
+
+    private CountDownTimer countDownTimer;
 
     //affichage du menu
     @Override
@@ -98,6 +106,8 @@ public class GameToolbar extends AppCompatActivity {
         dbHelper = new DBHelper(this);
 
         setContentView(R.layout.activity_game);
+
+
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -167,6 +177,26 @@ public class GameToolbar extends AppCompatActivity {
     private void newGame(int c, int r) {
         ROW_COUNT = r;
         COL_COUNT = c;
+
+        durationStart = System.currentTimeMillis();
+        final TextView _tv = (TextView) findViewById( R.id.textViewTimer );
+        findViewById(R.id.textViewTimer).setVisibility(View.VISIBLE);
+
+        countDownTimer = new CountDownTimer(60000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+               // _tv.setText("Timer : " +new SimpleDateFormat("mm:ss").format(new Date( millisUntilFinished)));
+                _tv.setText(new SimpleDateFormat("mm:ss").format(new Date( millisUntilFinished)));
+
+            }
+
+            public void onFinish() {
+                _tv.setText("GAME OVER!");
+
+                TableRow tr = ((TableRow)findViewById(R.id.TableRow03));
+                tr.removeAllViews();
+            }
+        }.start();
 
         //Nombre de paires = (X * Y) / 2
         countPairOfCards = (c*r) / 2;
@@ -403,37 +433,57 @@ public class GameToolbar extends AppCompatActivity {
      * TODO ajouter le facteur temps dans le calcul du score
      */
     private void onTurnAllCards() {
-        Log.i("rrrrrr", " Gagné !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " +countPairOfCards);
+        Log.i("onTurnAllCards()", " Gagné !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " +countPairOfCards);
 
-        Log.i("loadCards()","size=" + countPairOfCards);
+        Log.i("onTurnAllCards()","size=" + countPairOfCards);
 
-        final int score = (int)( (double)(1.0/(double)turns) * (double)10000);
+        long durationEnd = System.currentTimeMillis();
+
+        final long duration = durationEnd - durationStart;
+
+        final int durationAsSec = (int)duration/1000;
+
+        Log.i("onTurnAllCards()","duration     =" + duration);
+        Log.i("onTurnAllCards()","durationAsSec=" + durationAsSec);
+
+        final int score = (int)( (double)(100.0/((double)turns +(double) duration) ) * (double)100000);
 
         final EditText txtUrl = new EditText(this);
 
 // Set the default text to a link of the Queen
         txtUrl.setHint("Votre nom");
 
+        //Annuler le chronomètre
+        countDownTimer.cancel();
 
-        new AlertDialog.Builder(this)
-                .setTitle("Gagné!!!")
-                .setMessage("Vous avez réussi "+turns+" essais \n Votre score est : "+score)
-                .setView(txtUrl)
-                .setPositiveButton("Valider", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        String name = txtUrl.getText().toString();
-                        Log.i("loadCards()","name =" +name);
+        findViewById(R.id.textViewTimer).setVisibility(View.INVISIBLE);
 
-                        dbHelper.insertGamers(name, score);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                        Toast.makeText(GameToolbar.this, " Gagné !!!! en "+turns+" essais \n Votre score est : "+score, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                    }
-                })
-                .show();
+        builder.setTitle("Gagné!!!");
+        builder.setMessage("Vous avez réussi " + turns + " essais \n Votre score est : " + score);
+        builder.setView(txtUrl);
+        builder.setPositiveButton("Valider", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String name = txtUrl.getText().toString();
+
+                if(name == null || name.equals("")){
+                    name = "Anonyme";
+                }
+
+                Log.i("loadCards()", "name =" + name);
+
+                dbHelper.insertScore(name, score, turns, durationAsSec);
+
+                Toast.makeText(GameToolbar.this, " Gagné !!!! en " + turns + " essais \net "+durationAsSec+"sec.\n Votre score est : " + score, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        builder.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+            }
+        });
+        builder.show();
 
     }
 

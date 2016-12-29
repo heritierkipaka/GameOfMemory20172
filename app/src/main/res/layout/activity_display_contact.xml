@@ -25,7 +25,6 @@
             tools:ignore="ObsoleteLayoutParam,RtlHardcoded" />
         <!-- Toolbar du Haut -->
 
-
         <TextView
             android:id="@+id/NomView"
             android:layout_width="wrap_content"
@@ -36,20 +35,18 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             tools:ignore="RtlHardcoded" />
 
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/editTextTurns"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="128dp"
-            android:onClick="run"
-            android:text="@string/save"
-            tools:ignore="RtlHardcoded" />
-
-
         <TextView
             android:id="@+id/ScoreView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/editTextTurns"
+            android:layout_alignLeft="@+id/NomView"
+            android:text="@string/score"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/TurnsView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/editTextTurns"
@@ -57,6 +54,7 @@
             android:text="@string/turns"
             android:textAppearance="?android:attr/textAppearanceMedium"
             tools:ignore="RtlHardcoded" />
+
 
 
         <EditText
@@ -71,6 +69,19 @@
 
         <EditText
             android:id="@+id/editTextName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tb_DataBase"
+            android:layout_marginLeft="82dp"
+            android:layout_marginTop="38dp"
+            android:layout_toEndOf="@+id/ScoreView"
+            android:ems="10"
+            android:inputType="text"
+            tools:ignore="LabelFor,RtlHardcoded" />
+
+
+        <EditText
+            android:id="@+id/editTextDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tb_DataBase"
