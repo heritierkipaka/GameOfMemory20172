@@ -441,7 +441,7 @@ public class GameToolbar extends AppCompatActivity {
 
         final long duration = durationEnd - durationStart;
 
-        final long durationAsSec = duration/1000;
+        final int durationAsSec = (int)duration/1000;
 
         Log.i("onTurnAllCards()","duration     =" + duration);
         Log.i("onTurnAllCards()","durationAsSec=" + durationAsSec);
@@ -473,7 +473,7 @@ public class GameToolbar extends AppCompatActivity {
 
                 Log.i("loadCards()", "name =" + name);
 
-                dbHelper.insertGamers(name, score);
+                dbHelper.insertScore(name, score, turns, durationAsSec);
 
                 Toast.makeText(GameToolbar.this, " Gagné !!!! en " + turns + " essais \net "+durationAsSec+"sec.\n Votre score est : " + score, Toast.LENGTH_SHORT).show();
 
