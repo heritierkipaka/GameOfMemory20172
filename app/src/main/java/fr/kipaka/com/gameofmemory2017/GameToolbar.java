@@ -185,7 +185,9 @@ public class GameToolbar extends AppCompatActivity {
         countDownTimer = new CountDownTimer(60000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                _tv.setText("Timer : " +new SimpleDateFormat("mm:ss").format(new Date( millisUntilFinished)));
+               // _tv.setText("Timer : " +new SimpleDateFormat("mm:ss").format(new Date( millisUntilFinished)));
+                _tv.setText(new SimpleDateFormat("mm:ss").format(new Date( millisUntilFinished)));
+
             }
 
             public void onFinish() {
@@ -464,6 +466,11 @@ public class GameToolbar extends AppCompatActivity {
         builder.setPositiveButton("Valider", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String name = txtUrl.getText().toString();
+
+                if(name == null || name.equals("")){
+                    name = "Anonyme";
+                }
+
                 Log.i("loadCards()", "name =" + name);
 
                 dbHelper.insertGamers(name, score);
