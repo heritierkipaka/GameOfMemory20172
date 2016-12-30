@@ -84,9 +84,12 @@ public class HighScoresToolbar extends AppCompatActivity {
         ListView obj = (ListView) findViewById(R.id.listView1);
 
         obj.setAdapter(arrayAdapter);
-       /* obj.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+         obj.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+
+                /*
                 int id_To_Search = arg2 + 1;
 
                 Bundle dataBundle = new Bundle();
@@ -95,9 +98,9 @@ public class HighScoresToolbar extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), DisplayScores.class);
 
                 intent.putExtras(dataBundle);
-                startActivity(intent);
+                startActivity(intent);*/
             }
-        });*/
+        });
 
 
     }

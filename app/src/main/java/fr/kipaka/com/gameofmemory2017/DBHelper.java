@@ -100,6 +100,7 @@ class DBHelper extends SQLiteOpenHelper {
         while (!res.isAfterLast()) {
             Map<String, Object> row = new HashMap<>();
 
+            row.put(SCORE_COL_ID, res.getInt(res.getColumnIndex(SCORE_COL_ID)));
             row.put(SCORE_COL_NAME, res.getString(res.getColumnIndex(SCORE_COL_NAME)));
             row.put(SCORE_COL_SCORE, res.getInt(res.getColumnIndex(SCORE_COL_SCORE)));
             row.put(SCORE_COL_TURNS, res.getInt(res.getColumnIndex(SCORE_COL_TURNS)));
