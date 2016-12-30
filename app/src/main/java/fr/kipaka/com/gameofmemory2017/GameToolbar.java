@@ -189,6 +189,14 @@ public class GameToolbar extends AppCompatActivity {
 
         final long DURATION_MAX = (ROW_COUNT * COL_COUNT) * 10000;
 
+
+
+        //a Si le chronomètre est en cours alors l'annuler
+        if(countDownTimer != null){
+            countDownTimer.cancel();
+        }
+
+        //b Initialisation du chronomètre
         countDownTimer = new CountDownTimer(DURATION_MAX, 1000) {
 
             public void onTick(long millisUntilFinished) {
