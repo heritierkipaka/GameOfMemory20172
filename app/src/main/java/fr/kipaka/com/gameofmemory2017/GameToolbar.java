@@ -72,6 +72,8 @@ public class GameToolbar extends AppCompatActivity {
 
     private CountDownTimer countDownTimer;
 
+
+
     //affichage du menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -168,7 +170,6 @@ public class GameToolbar extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
             }
 
         });
@@ -178,11 +179,17 @@ public class GameToolbar extends AppCompatActivity {
         ROW_COUNT = r;
         COL_COUNT = c;
 
+        //Nombre de paires = (X * Y) / 2
+        countPairOfCards = (ROW_COUNT * COL_COUNT) / 2;
+
         durationStart = System.currentTimeMillis();
         final TextView _tv = (TextView) findViewById( R.id.textViewTimer );
         findViewById(R.id.textViewTimer).setVisibility(View.VISIBLE);
 
-        countDownTimer = new CountDownTimer(60000, 1000) {
+
+        final long DURATION_MAX = (ROW_COUNT * COL_COUNT) * 10000;
+
+        countDownTimer = new CountDownTimer(DURATION_MAX, 1000) {
 
             public void onTick(long millisUntilFinished) {
                // _tv.setText("Timer : " +new SimpleDateFormat("mm:ss").format(new Date( millisUntilFinished)));
@@ -192,14 +199,12 @@ public class GameToolbar extends AppCompatActivity {
 
             public void onFinish() {
                 _tv.setText("GAME OVER!");
-
                 TableRow tr = ((TableRow)findViewById(R.id.TableRow03));
                 tr.removeAllViews();
             }
         }.start();
 
-        //Nombre de paires = (X * Y) / 2
-        countPairOfCards = (c*r) / 2;
+
 
         cards = new int [COL_COUNT] [ROW_COUNT];
 
@@ -433,7 +438,7 @@ public class GameToolbar extends AppCompatActivity {
      * TODO ajouter le facteur temps dans le calcul du score
      */
     private void onTurnAllCards() {
-        Log.i("onTurnAllCards()", " Gagné !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " +countPairOfCards);
+        Log.i("onTurnAllCards()", " Gagné !!! " +countPairOfCards);
 
         Log.i("onTurnAllCards()","size=" + countPairOfCards);
 
@@ -446,7 +451,9 @@ public class GameToolbar extends AppCompatActivity {
         Log.i("onTurnAllCards()","duration     =" + duration);
         Log.i("onTurnAllCards()","durationAsSec=" + durationAsSec);
 
-        final int score = (int)( (double)(100.0/((double)turns +(double) duration) ) * (double)100000);
+
+        //Calcul du score du joueur
+        final int score = calculateScore(duration, turns, ROW_COUNT, COL_COUNT);
 
         final EditText txtUrl = new EditText(this);
 
@@ -485,6 +492,28 @@ public class GameToolbar extends AppCompatActivity {
         });
         builder.show();
 
+    }
+
+    /**
+     * Calcul du score du joueur
+     *
+     * doit prondre en compte trois facteurs
+     *
+     * 1) le temps passé
+     * 2) le nombre d'essais
+     * 3) la le nombre de cases ( X * Y )
+     *
+     * @param duration
+     * @param turns
+     * @param nbRows
+     * @param nbCols
+     * @return
+     */
+    private int calculateScore(double duration, int turns, int nbRows, int nbCols) {
+
+        double complexiteXY = Math.pow(nbRows*nbCols, 2);
+
+        return (int)( (double)(100.0/((double)turns + duration) ) * (double)100000 * complexiteXY);
     }
 
 
