@@ -43,9 +43,9 @@ public class DisplayScores extends AppCompatActivity {
                 id_To_Update = Value;
                 rs.moveToFirst();
 
-                String nam = rs.getString(rs.getColumnIndex(DBHelper.COMPTEUR_COLUMN_NAME));
-                String phon = rs.getString(rs.getColumnIndex(DBHelper.COMPTEUR_COLUMN_SCORE));
-                String id = rs.getString(rs.getColumnIndex(DBHelper.COMPTEUR_COLUMN_ID));
+                String nam = rs.getString(rs.getColumnIndex(DBHelper.SCORE_COL_NAME));
+                String phon = rs.getString(rs.getColumnIndex(DBHelper.SCORE_COL_SCORE));
+                String id = rs.getString(rs.getColumnIndex(DBHelper.SCORE_COL_ID));
 
                 if (!rs.isClosed()) {
                     rs.close();
