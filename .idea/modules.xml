@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/GameOfMemory20172.iml" filepath="$PROJECT_DIR$/GameOfMemory20172.iml" />
       <module fileurl="file:///media/DATA/dev-env/workspaces/ws-android/nassim/GameOfMemory20172/GameOfMemory20172.iml" filepath="/media/DATA/dev-env/workspaces/ws-android/nassim/GameOfMemory20172/GameOfMemory20172.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file:///media/DATA/dev-env/workspaces/ws-android/nassim/GameOfMemory20172/app/app.iml" filepath="/media/DATA/dev-env/workspaces/ws-android/nassim/GameOfMemory20172/app/app.iml" />
     </modules>
   </component>

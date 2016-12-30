@@ -128,7 +128,7 @@ public class MusicMenu extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mp.start();
+
     }
 
     @Override
@@ -156,7 +156,7 @@ public class MusicMenu extends AppCompatActivity {
                 return true;
 
             case R.id.action_website:
-                Toast.makeText(this, "KIPAKA Héritier", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "KIPAKA et TALEB", Toast.LENGTH_SHORT).show();
             default:
                 return super.onOptionsItemSelected(item);
         }
