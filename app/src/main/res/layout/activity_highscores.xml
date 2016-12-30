@@ -38,7 +38,7 @@
         android:text="Game of Memory"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="35dp"
-        tools:ignore="HardcodedText,SpUsage" />
+        tools:ignore="HardcodedText,SpUsage,UnknownId" />
 
 
     <ScrollView
@@ -64,7 +64,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/ScoreTitleView"
-        android:layout_marginTop="58dp"></ListView>
+        android:layout_marginTop="58dp"
+        android:layout_above="@+id/inc_tb_bottom"></ListView>
 
 
 

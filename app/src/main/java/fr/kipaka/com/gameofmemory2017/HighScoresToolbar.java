@@ -8,13 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -71,7 +67,7 @@ public class HighScoresToolbar extends AppCompatActivity {
         mToolbarBottom.findViewById(R.id.iv_settings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HighScoresToolbar.this, "Développeur KIPAKA Mubwala AND TALEB Nassim!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HighScoresToolbar.this, "Développeur: KIPAKA and TALEB", Toast.LENGTH_SHORT).show();
             }
         });
         //FIN - Les items du menu d'en bas les reseaux sociaux

@@ -66,7 +66,7 @@ public class ApprosMenu extends AppCompatActivity {
         mToolbarBottom.findViewById(R.id.iv_settings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ApprosMenu.this, "Développeur KIPAKA Mubwala AND TALEB Nassim!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ApprosMenu.this, "Développeur: KIPAKA and TALEB", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -84,7 +84,7 @@ public class ApprosMenu extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_info:
-                Toast.makeText(this, "Commencer le jeu en cliquant sur (Memory Game)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Cliquez sur retour pour revenir au menu principal", Toast.LENGTH_SHORT).show();
                 return true;
 
             case R.id.retour:
@@ -92,7 +92,7 @@ public class ApprosMenu extends AppCompatActivity {
                 return true;
 
             case R.id.action_website:
-                Toast.makeText(this, "KIPAKA Héritier", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "KIPAKA et TALEB", Toast.LENGTH_SHORT).show();
             default:
                 return super.onOptionsItemSelected(item);
         }

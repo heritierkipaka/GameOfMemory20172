@@ -66,7 +66,7 @@ public class MusicMenu extends AppCompatActivity {
         mToolbarBottom.findViewById(R.id.iv_settings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MusicMenu.this, "Développeur KIPAKA Mubwala AND TALEB Nassim!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MusicMenu.this, "Développeur: KIPAKA et TALEB", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         mToolbarBottom.findViewById(R.id.iv_settings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Développeur KIPAKA Mubwala AND TALEB Nassim!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Développeur: KIPAKA and TALEB", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_website:
-                Toast.makeText(this,"KIPAKA Héritier",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "KIPAKA et TALEB", Toast.LENGTH_SHORT).show();
             default:
                 return super.onOptionsItemSelected(item);
         }

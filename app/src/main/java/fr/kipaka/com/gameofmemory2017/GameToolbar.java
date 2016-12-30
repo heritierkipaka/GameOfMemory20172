@@ -92,7 +92,7 @@ public class GameToolbar extends AppCompatActivity {
                 return true;
 
             case R.id.action_website:
-                Toast.makeText(this,"KIPAKA Héritier",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "KIPAKA et TALEB", Toast.LENGTH_SHORT).show();
             default:
                 return super.onOptionsItemSelected(item);
         }
