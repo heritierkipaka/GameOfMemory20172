@@ -54,10 +54,10 @@ public class ListOfMapArrayAdapter extends ArrayAdapter<Map<String,Object>> {
         }
 
         Map<String, Object> scoreMap = data.get(position);
-        holder.txtName.setText((String)scoreMap.get(DBHelper.COMPTEUR_COLUMN_NAME));
-        holder.txtScore.setText(String.valueOf(scoreMap.get(DBHelper.COMPTEUR_COLUMN_SCORE)));
-        //holder.txtTurns.setText(String.valueOf(scoreMap.get(DBHelper.COMPTEUR_COLUMN_TURNS)));
-        //holder.txtDuration.setText(String.valueOf(scoreMap.get(DBHelper.COMPTEUR_COLUMN_DURATION)));
+        holder.txtName.setText((String)scoreMap.get(DBHelper.SCORE_COL_NAME));
+        holder.txtScore.setText(String.valueOf(scoreMap.get(DBHelper.SCORE_COL_SCORE)));
+        //holder.txtTurns.setText(String.valueOf(scoreMap.get(DBHelper.SCORE_COL_TURNS)));
+        //holder.txtDuration.setText(String.valueOf(scoreMap.get(DBHelper.SCORE_COL_DURATION)));
 
         return row;
     }
