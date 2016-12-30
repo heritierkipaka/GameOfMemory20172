@@ -82,11 +82,13 @@ public class MusicMenu extends AppCompatActivity {
             public void onClick(View v) {
                 mp = MediaPlayer.create(getApplicationContext(), R.raw.background_music);
                 Toast.makeText(getApplicationContext(), "Starting sound", Toast.LENGTH_SHORT).show();
-
+                if (mp != null) {
                 mp.start();
-            }
-        });
 
+            }
+            }
+
+        });
         /**
          * Play button click event* plays a song* pauses a song* */
         pause.setOnClickListener(new OnClickListener() {
@@ -99,10 +101,9 @@ public class MusicMenu extends AppCompatActivity {
                         mp.pause();
                     } else {
                         // Resume song
-                        if (mp != null) {
+
                             Toast.makeText(getApplicationContext(), "Playing sound", Toast.LENGTH_SHORT).show();
                             mp.start();
-                        }
 
 
                     }
@@ -128,13 +129,14 @@ public class MusicMenu extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mp.start();
 
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mp.release();
+        mp.start();
     }
 
     //Les items du menu d'en haut

@@ -108,7 +108,7 @@ public class HighScoresToolbar extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
-            case R.id.item100:
+          /*ase R.id.item100:
                 Bundle dataBundle = new Bundle();
                 dataBundle.putInt("id", 0);
 
@@ -116,7 +116,7 @@ public class HighScoresToolbar extends AppCompatActivity {
                 intent.putExtras(dataBundle);
                 startActivity(intent);
                 return true;
-
+*/
             case retour:
                 finish();
                 return true;
