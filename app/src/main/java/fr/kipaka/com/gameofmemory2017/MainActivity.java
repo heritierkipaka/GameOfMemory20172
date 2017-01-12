@@ -5,14 +5,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
-
+    public static final String MY_TAG = "Message";
     private static long time;
     Toolbar mToolbarBottom;
 
@@ -119,8 +119,26 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-
         super.onDestroy();
+        Log.i(MY_TAG, "OnCreate");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i(MY_TAG, "OnPause");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i(MY_TAG, "OnResume");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i(MY_TAG, "OnResume");
     }
 
     @Override

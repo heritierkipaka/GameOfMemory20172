@@ -38,7 +38,7 @@ import java.util.TimerTask;
  tout en cliquant sur chaque cellule d'image (DC chaque cellule sera initialement fixé le même chiffre),
  il passera l'id pour calculer ensuite quelle rangée et col image
  rangée et col retiré de la cellule DC avec des nombres aléatoires initiaux,
- mis en arrière-plan de la cellule selon l'ArrayList ci-dessus.
+ mis en arrière-plan de la cellule selon l'ArrayList ci-dessous.
  Maintenant, est quand vous avez besoin d'ouvrir 2 case 2 case pour vérifier que
  chacun aléatoire = k, si = puis il a fallu, et k =,
  puis le remettre à l'arrière-plan d'origine.*/
@@ -60,14 +60,13 @@ public class GameToolbar extends AppCompatActivity {
     private Cards seconedCard;
     private ButtonListener buttonListener;
     private DBHelper dbHelper;
-    /**
+
+    /***
      * Nombre de paires de carte restantes
      */
     private int countPairOfCards;
 
-    /**
-     * Demarage du jeu
-     */
+    /*** Demarage du jeu*/
     private long durationStart;
 
     private CountDownTimer countDownTimer;
@@ -104,9 +103,7 @@ public class GameToolbar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         dbHelper = new DBHelper(this);
-
         setContentView(R.layout.activity_game);
 
 
@@ -123,7 +120,6 @@ public class GameToolbar extends AppCompatActivity {
         buttonListener = new ButtonListener();
 
         mainTable = (TableLayout)findViewById(R.id.TableLayout03);
-
 
         context  = mainTable.getContext();
 
@@ -174,7 +170,8 @@ public class GameToolbar extends AppCompatActivity {
 
         });
     }
-    //generer une nouvelle partie de jeu
+
+    //génerer une nouvelle partie de jeu " de la variable New Game
     private void newGame(int c, int r) {
         ROW_COUNT = r;
         COL_COUNT = c;
@@ -236,7 +233,7 @@ public class GameToolbar extends AppCompatActivity {
         firstCard=null;
         // chargement des cartes
         loadCards();
-        //affiche le score
+        //affiche le score " nombre de tours" de la partie
         turns=0;
         ((TextView)findViewById(R.id.tv1)).setText("Essais: "+turns);
 
@@ -265,7 +262,7 @@ public class GameToolbar extends AppCompatActivity {
     }
 
 
-    //genre les cartes dans les cases
+    //Pour gérer les cartes dans les cases du jeu
     private void loadCards(){
         try{
             int size = ROW_COUNT*COL_COUNT;
@@ -465,7 +462,7 @@ public class GameToolbar extends AppCompatActivity {
 
         final EditText txtUrl = new EditText(this);
 
-// Set the default text to a link of the Queen
+        // Mettre votre Nom
         txtUrl.setHint("Votre nom");
 
         //Annuler le chronomètre
