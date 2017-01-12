@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +15,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MusicMenu extends AppCompatActivity {
-
+    public static final String MY_TAG = "Message";
     Button start, pause, stop;
     MediaPlayer mp;
     Toolbar mToolbarBottom;
@@ -24,6 +25,7 @@ public class MusicMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music);
+        Log.i(MY_TAG, "OnCreate");
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.tb_main);
         mToolbar.setTitle("Game Of Memory!");
@@ -130,13 +132,26 @@ public class MusicMenu extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         mp.start();
-
+        Log.i(MY_TAG, "OnDestroy");
     }
 
     @Override
     public void onPause() {
         super.onPause();
         mp.start();
+        Log.i(MY_TAG, "OnPause");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i(MY_TAG, "OnResume");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i(MY_TAG, "OnResume");
     }
 
     //Les items du menu d'en haut
